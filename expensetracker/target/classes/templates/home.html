@@ -1,11 +1,179 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    This is home page
-</body>
+<html lang="en" data-th-replace="~{base :: parent(~{::#content},~{::title})}">
+  <head>
+    <title>Home</title>
+  </head>
+  <body>
+    <div id="content">
+      <div>
+        <div class="flex justify-center items-center flex-col min-h-[40rem]">
+          <h4 class="md:text-center text-5xl font-semibold">
+            Stuck with your <span class="text-danger">expenses?</span>
+          </h4>
+          <h4 class="md:text-center text-5xl font-semibold">
+            Let Budget <span class="text-lightbtn">Bee</span> help you manage.
+          </h4>
+
+          <a
+          href="/register"
+            class="self-start md:self-center text-white bg-lightbtn hover:bg-lightbtnhover focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-4xl px-6 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 mt-6"
+          >
+            Start Tracking
+          </a>
+        </div>
+      </div>
+
+      <!-- Cards -->
+      <div class="flex justify-between items-stretch mb-8 flex-col md:flex-row gap-2">
+        <div
+          class="w-full rounded-lg border-2 border-lightborder bg-orange-300 flex justify-center items-center p-8 flex-col hover:bg-lightbtn cursor-pointer"
+        >
+          <img class="w-16 h-16 mb-2" src="images/folder.png" alt="security" />
+          <h4 class="text-xl text-center font-semibold">100% Data Security</h4>
+        </div>
+        <div
+          class="w-full rounded-lg border-2 border-lightborder bg-orange-300 flex justify-center items-center p-8 flex-col hover:bg-lightbtn cursor-pointer"
+        >
+          <img
+            class="w-16 h-16 mb-2"
+            src="images/currency-exchange.png"
+            alt="security"
+          />
+          <h4 class="text-xl text-center font-semibold">
+            Multi Currency Support
+          </h4>
+        </div>
+        <div
+          class="w-full rounded-lg border-2 border-lightborder bg-orange-300 flex justify-center items-center p-8 flex-col hover:bg-lightbtn cursor-pointer"
+        >
+          <img
+            class="w-16 h-16 mb-2"
+            src="images/cloud-storage.png"
+            alt="security"
+          />
+          <h4 class="text-xl text-center font-semibold">Cloud Support</h4>
+        </div>
+        <div
+          class="w-full rounded-lg border-2 border-lightborder bg-orange-300 flex justify-center items-center p-8 flex-col hover:bg-lightbtn cursor-pointer"
+        >
+          <img class="w-16 h-16 mb-2" src="images/key.png" alt="security" />
+          <h4 class="text-xl text-center font-semibold">Easy Access</h4>
+        </div>
+      </div>
+
+      <!-- bottom sections -->
+      <div class="pt-24 pb-12">
+        <div class="flex justify-evenly items-center mb-16 flex-col md:flex-row gap-2">
+          <img
+            class="h-[30rem] md:h-[40rem] mask-image-1"
+            src="images/1.jpg"
+            alt=""
+          />
+          <h4 class="text-4xl font-semibold">
+            Keep Track of Your <span class="text-danger">Expenses</span>,<br />
+            No Matter Where You Are!
+          </h4>
+        </div>
+
+        <div class="flex justify-evenly items-center mb-16 flex-col md:flex-row gap-2">
+          <img
+            class="h-[30rem] md:h-[40rem] mask-image-1 order-2 scale-x-[-1]"
+            src="images/2.jpg"
+            alt=""
+          />
+          <h4 class="text-4xl font-semibold order-1">
+            Take Control of Your Budget!<br />
+            and Your Future – With <br />Budget
+            <span class="text-red-700">Bee</span>
+          </h4>
+        </div>
+        <div class="flex justify-evenly items-center flex-col md:flex-row gap-2">
+          <img
+            class="h-[30rem] md:h-[40rem] mask-image-2 scale-x-[-1]"
+            src="images/4.jpg"
+            alt=""
+          />
+          <h4 class="text-4xl font-semibold">
+            Your budget, your <span style="color: #2db84c">Smile</span> –
+            <br />Budget <span class="text-red-600">Bee</span><br />
+            keeps it all in check!
+          </h4>
+        </div>
+      </div>
+      <div class="p-4">
+        <div class="text-center">
+          <p class="text-2xl text-center text-lightptext">
+            We value your privacy. All your data is safe with us.
+          </p>
+          <div class="flex justify-center">
+            <a href="/register"
+              class="text-white bg-lightbtn hover:bg-lightbtnhover focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-2xl px-6 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800  mt-2"
+            >
+              Register Now
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- faq -->
+      <div class="mt-16 mb-12">
+        <div class="text-center mt-12 px-4 sm:px-8">
+          <h4 class="text-3xl font-semibold text-gray-800 mb-6">
+            Frequently Asked <span class="text-danger">Questions</span>
+          </h4>
+          <div class="max-w-3xl mx-auto">
+            <ul class="text-lg space-y-6">
+              <li
+                class="bg-gray-100 p-4 rounded-lg shadow-sm hover:bg-gray-200 transition-all"
+              >
+                <strong class="text-xl font-medium text-gray-900"
+                  >How do I track my expenses?</strong
+                >
+                <p class="mt-2 text-gray-700">
+                  It's simple! Just enter your expenses, and we do the rest.
+                  Budget Bee will automatically categorize and track your
+                  spending.
+                </p>
+              </li>
+              <li
+                class="bg-gray-100 p-4 rounded-lg shadow-sm hover:bg-gray-200 transition-all"
+              >
+                <strong class="text-xl font-medium text-gray-900"
+                  >Is Budget Bee free?</strong
+                >
+                <p class="mt-2 text-gray-700">
+                  Yes, Budget Bee offers a free service with essential features,
+                  and also includes premium features for enhanced budgeting
+                  capabilities.
+                </p>
+              </li>
+              <li
+                class="bg-gray-100 p-4 rounded-lg shadow-sm hover:bg-gray-200 transition-all"
+              >
+                <strong class="text-xl font-medium text-gray-900"
+                  >What is included in the premium version?</strong
+                >
+                <p class="mt-2 text-gray-700">
+                  The premium version includes advanced budgeting tools, more
+                  detailed reports, and enhanced data security. However, most
+                  core features are available in the free version too.
+                </p>
+              </li>
+              <li
+                class="bg-gray-100 p-4 rounded-lg shadow-sm hover:bg-gray-200 transition-all"
+              >
+                <strong class="text-xl font-medium text-gray-900"
+                  >Is my data safe with Budget Bee?</strong
+                >
+                <p class="mt-2 text-gray-700">
+                  Absolutely! We use encryption and advanced security protocols
+                  to ensure your data is safe and protected.
+                </p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

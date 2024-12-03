@@ -1,0 +1,15 @@
+Notes...................
+
+npx tailwindcss -i ./src/main/resources/static/css/input.css -o ./src/main/resources/static/css/output.css --watch
+
+to install tailwind : npm init -y 
+                      type = module
+                      tailwind....
+
+
+Full Color Usage Recap (For Clarity):
+Primary Color (Royal Blue - #007BFF): Main buttons and actions.
+Accent Color (Amber - #FFC107): Links, secondary actions, icons, and highlights.
+Backgrounds: Soft Gray for light mode, Dark Gray for dark mode.
+Text: Dark Charcoal for light mode and Light Gray for dark mode.
+Error Color (Soft Red - #FF5722): For errors or alert messages.

@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Parkinsans:wght@300..800&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.mask-image-1 {
+    -webkit-mask-image: linear-gradient(to left, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 50%);
+    mask-image: linear-gradient(to left, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 50%);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    background-color: #eaeaea; /* Ensure this matches the background */
+}
+.mask-image-2 {
+    -webkit-mask-image: linear-gradient(to left, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 100%);
+    mask-image: linear-gradient(to left, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 100%);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    background-color: #eaeaea; /* Ensure this matches the background */
+}
+
+.reg-form{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}

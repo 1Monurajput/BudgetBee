@@ -11,4 +11,16 @@ public class PageController {
         System.out.println("This is home page........");
         return "home";
     }
+
+    @RequestMapping("/register")
+    public String register(){
+        System.out.println("This is register page........");
+        return "register";
+    }
+
+    @RequestMapping("/login")
+    public String login(){
+        System.out.println("This is login page........");
+        return "login";
+    }
 }
