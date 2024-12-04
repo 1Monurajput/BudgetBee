@@ -33,14 +33,28 @@ function showTheme(){
     var theme = getTheme();
     if(theme == "dark"){
         document.querySelector("html").classList.add(theme);
-        document.getElementById("theme_name").innerHTML="Dark";
-        document.getElementById("theme_moon").style.display="inline";
-        document.getElementById("theme_sun").style.display="none";
+
+        document.querySelectorAll(".theme_name").forEach((element) => {
+            element.innerHTML="Dark";
+        })
+        document.querySelectorAll(".theme_moon").forEach((element) =>{
+            element.style.display="inline";
+        })
+        document.querySelectorAll(".theme_sun").forEach((element) => {
+            element.style.display="none";
+        })
     }
     else{
-        document.getElementById("theme_name").innerHTML="Light";
-        document.getElementById("theme_moon").style.display="none";
-        document.getElementById("theme_sun").style.display="inline";
+
+        document.querySelectorAll(".theme_name").forEach((element,index) => {
+            element.innerHTML="Light";
+        })
+        document.querySelectorAll(".theme_moon").forEach((element) =>{
+            element.style.display="none";
+        })
+        document.querySelectorAll(".theme_sun").forEach((element) => {
+            element.style.display="inline";
+        })
+
     }
-    console.log("show theme activated")
 }

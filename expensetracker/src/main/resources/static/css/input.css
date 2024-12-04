@@ -22,3 +22,13 @@
 .reg-form{
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
+
+
+.i-label{
+    display: none;
+}
+
+#i-button:hover + .i-label{
+    color:green;
+    display: block;
+}
