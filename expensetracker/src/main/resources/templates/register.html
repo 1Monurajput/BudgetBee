@@ -44,7 +44,7 @@
                             </label>
 
                             <p data-th-if="${emailError}"
-                                class="absolute top-[32%] right-[4%] text-[10px] text-danger shadow-inset-red border border-danger rounded-lg p-0.5 px-2">
+                                class="max-[450px]:hidden absolute top-[32%] right-[4%] text-[10px] text-danger shadow-inset-red border border-danger rounded-lg p-0.5 px-2">
                                 Email Already Exists!!
                             </p>
                         </div>
@@ -68,16 +68,16 @@
                                 <i class="fa-solid fa-info text-[10px]"></i>
                             </p>
                             <p id="i-buttonhover"
-                                class="i-label z-[100] absolute top-[32%] right-[10%] cursor-pointer p-0.5 rounded-lg px-2 text-[10px]">
+                                class="max-[450px]:mr-2 i-label z-[100] absolute top-[32%] right-[10%] cursor-pointer p-0.5 rounded-lg px-2 text-[10px]">
                             </p>
 
                             <!-- strong weak password -->
                             <img id="strong_weak"
-                                class="absolute top-[32%] right-[4%] w-5 h-5 p-0.5 border-2 border-gray-700 rounded-full cursor-pointer hidden"
+                                class="max-[450px]:mr-1.5 absolute top-[32%] right-[4%] w-5 h-5 p-0.5 border-2 border-gray-700 rounded-full cursor-pointer hidden"
                                 src="" alt="" />
 
                             <p id="strong_weak_hover"
-                                class="absolute top-[32%] right-[10%] cursor-pointer p-0.5 rounded-lg px-2 text-[10px]">
+                                class="max-[450px]:mr-3 absolute top-[32%] right-[10%] z-50 cursor-pointer p-0.5 rounded-lg px-2 text-[10px]">
                             </p>
                         </div>
                         <div class="relative z-0 w-full mb-5 group">
@@ -97,14 +97,25 @@
 
                         <!-- form password validator Error  teller -->
 
-                        <div id="passwordError" class="relative z-0 w-full mb-5 group text-sm text-danger border-2 border-danger p-1 rounded-lg shadow-inset-red justify-between hidden">
+                        <div id="passwordError"
+                            class="relative z-0 w-full mb-5 group text-sm text-danger border-2 border-danger p-1 rounded-lg shadow-inset-red justify-between hidden">
                             <p>
-                                Passwords do not match.
+                                Passwords do not match!!
                             </p>
                             <button onclick="passwordError()" class="hover:bg-lightbg px-2 rounded-lg font-medium">
                                 <i class="fa-solid fa-xmark hover:rotate-90 ease-in duration-200"></i>
                             </button>
                         </div>
+
+                        <!-- register email error -->
+
+                        <div data-th-if="${emailError}"
+                            class="min-[450px]:hidden relative z-0 w-full mb-5 group text-sm text-danger border-2 border-danger p-1 rounded-lg shadow-inset-red">
+                            <p>
+                                Email Already Exists!!
+                            </p>
+                        </div>
+
                         <div class="flex justify-center gap-2">
                             <button type="reset"
                                 class="text-white !bg-lightbtn hover:!bg-lightbtnhover focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-base w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
@@ -133,7 +144,8 @@
             </div>
         </div>
 
-        <th:block data-th-if="${session.registeredSuccessfully}" data-th-text="${@sessionHelper.removeSession()}"></th:block>
+        <th:block data-th-if="${session.registeredSuccessfully}" data-th-text="${@sessionHelper.removeSession()}">
+        </th:block>
 
         <!-- Script -->
         <script src="js/eyePass.js"></script>

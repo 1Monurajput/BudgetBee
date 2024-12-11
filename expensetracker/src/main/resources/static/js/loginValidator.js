@@ -25,10 +25,12 @@ form.addEventListener("submit",async(event)=>{
     if(responseData.msg == "email"){
         emailError.style.display="block";
         document.getElementById("loginPasswordError").style.display="none";
+        document.getElementById("Mob_loginEmailError").style.display="block";
     }
     else if(responseData.msg == "password"){
         document.getElementById("loginPasswordError").style.display="flex";
         emailError.style.display="none";
+        document.getElementById("Mob_loginEmailError").style.display="none";
     }
     else if(responseData.msg == "done"){
         form.submit();
