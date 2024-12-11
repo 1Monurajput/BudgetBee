@@ -19,6 +19,10 @@ export default {
       fontFamily: {
         parks: ['Parkinsans', 'sans-serif'],
       },
+      boxShadow: {
+        'inset-red': 'inset 0px 0px 20px 6px rgb(254 202 202)',
+        'inset-green': 'inset 0px 0px 20px 6px rgb(187 247 208)',
+      },
     },
   },
   plugins: [],

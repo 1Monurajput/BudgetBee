@@ -1,8 +1,17 @@
 package com.expensetracker.expensetracker.entity;
 
+import java.time.LocalDateTime;
+import java.util.Collection;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -15,17 +24,47 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Users {
+public class Users implements UserDetails {
 
     @Id
-    public String userId;
-    @Column(nullable = false)
+    private String userId;
 
-    public String name;
-    @Column(unique = true,nullable = false)
-    public String email;
     @Column(nullable = false)
-    public String password;
-    public String phone;
-    public String profilePicutre;
+    private String name;
+
+    @Column(unique=true,nullable = false)
+    private String email;
+    private boolean emailVerified;
+
+    @Column(nullable = false)
+    @Getter(value = AccessLevel.NONE)
+    private String password;
+
+    private String phone;
+    private boolean phoneVerified;
+
+    private String profilePicture;
+
+    @Enumerated(EnumType.STRING)
+    private Provider provider=Provider.SELF;
+    private String providerId;
+
+    @Column(nullable = false,updatable = false)
+    private LocalDateTime registrationDateTime;
+    
+    private LocalDateTime lastLogin;
+
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+    @Override
+    public String getUsername() {
+        return this.email;
+    }
+    @Override
+    public String getPassword() {
+        return this.password;
+    }
 }

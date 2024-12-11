@@ -13,3 +13,12 @@ Accent Color (Amber - #FFC107): Links, secondary actions, icons, and highlights.
 Backgrounds: Soft Gray for light mode, Dark Gray for dark mode.
 Text: Dark Charcoal for light mode and Light Gray for dark mode.
 Error Color (Soft Red - #FF5722): For errors or alert messages.
+
+
+google authentication 
+
+    1: dependency add
+    2: google cloud console: 
+            1 client id
+            2 client secret or inko application.properties spring.security.oauth2.client......
+    3: security config: implement authenticationSuccesshandler and then redirect on new default redirectStragtergy.sendredirect

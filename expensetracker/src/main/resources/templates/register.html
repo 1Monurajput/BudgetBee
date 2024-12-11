@@ -6,21 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Register</title>
 </head>
+
 <body>
     <div id="content">
         <div class="flex justify-center items-center w-full">
-            <div class=" reg-form w-[30rem] border-2 border-lightborder rounded-xl overflow-hidden">
+            <div class="reg-form w-[30rem] border-2 border-lightborder rounded-xl overflow-hidden">
                 <div class="h-4 bg-lightextra"></div>
-                <div class="p-7"> 
-                    <h4 class="text-center text-3xl py-2 font-normal">Registration Form</h4>
-
+                <div class="p-7">
                     <!-- form -->
-                    <form 
-                    data-th-action="@{'/registration'}"
-                    method="post"
-                    onsubmit="return validatePassword()"
-                    data-th-object="${userForm}"
-                    class="max-w-md mx-auto">
+                    <form data-th-action="@{'/registration'}" method="post" onsubmit="return validatePassword()"
+                        data-th-object="${userForm}" class="max-w-md mx-auto">
+                        <!-- email Error -->
+                        <div data-th-if="${session.registeredSuccessfully}" id="emailError"
+                            class="flex justify-between mb-1 text-sm text-emtext border border-emtext rounded-lg p-2 shadow-inset-green">
+                            <p>You registered successfully.</p>
+                            <button onclick="emailErrorClose()" class="hover:bg-lightbg px-2 rounded-lg font-medium">
+                                <i class="fa-solid fa-xmark hover:rotate-90 ease-in duration-200"></i>
+                            </button>
+                        </div>
+                        <h4 class="text-center text-3xl py-2 font-normal">
+                            Registration Form
+                        </h4>
+
                         <div class="relative z-0 w-full mb-5 group">
                             <input type="text" data-th-field="*{name}" name="floating_Name" id="floating_Name"
                                 class="block py-2.5 px-0 w-full text-base text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
@@ -34,12 +41,17 @@
                                 placeholder=" " required />
                             <label for="floating_email"
                                 class="peer-focus:font-medium absolute text-base text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Email*
-                                </label>
+                            </label>
+
+                            <p data-th-if="${emailError}"
+                                class="absolute top-[32%] right-[4%] text-[10px] text-danger shadow-inset-red border border-danger rounded-lg p-0.5 px-2">
+                                Email Already Exists!!
+                            </p>
                         </div>
                         <div class="relative z-0 w-full mb-5 group">
                             <input type="number" data-th-field="*{phone}" name="floating_phone" id="floating_phone"
                                 class="block py-2.5 px-0 w-full text-base text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                                placeholder=" "/>
+                                placeholder=" " />
                             <label for="floating_phone"
                                 class="peer-focus:font-medium absolute text-base text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Phone</label>
                         </div>
@@ -50,10 +62,23 @@
                             <label for="pass"
                                 class="peer-focus:font-medium absolute text-base text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Password*</label>
 
-                                <!-- i button -->
-                                <p id="i-button" class="absolute top-[32%] right-[4%] cursor-pointer w-5 h-5 rounded-full hidden justify-center items-center"><i class="fa-solid fa-info text-[10px]"></i></p>
+                            <!-- i button -->
+                            <p id="i-button"
+                                class="absolute top-[32%] right-[4%] cursor-pointer w-5 h-5 rounded-full hidden justify-center items-center">
+                                <i class="fa-solid fa-info text-[10px]"></i>
+                            </p>
+                            <p id="i-buttonhover"
+                                class="i-label z-[100] absolute top-[32%] right-[10%] cursor-pointer p-0.5 rounded-lg px-2 text-[10px]">
+                            </p>
 
-                                <p id="i-buttonhover" class="i-label absolute top-[32%] right-[10%] cursor-pointer p-0.5 rounded-lg px-2 text-[10px]"></p>
+                            <!-- strong weak password -->
+                            <img id="strong_weak"
+                                class="absolute top-[32%] right-[4%] w-5 h-5 p-0.5 border-2 border-gray-700 rounded-full cursor-pointer hidden"
+                                src="" alt="" />
+
+                            <p id="strong_weak_hover"
+                                class="absolute top-[32%] right-[10%] cursor-pointer p-0.5 rounded-lg px-2 text-[10px]">
+                            </p>
                         </div>
                         <div class="relative z-0 w-full mb-5 group">
                             <input type="password" name="repeat_password" id="cpass"
@@ -64,27 +89,51 @@
                                 password*</label>
 
                             <!-- Eye -->
-                             <p onclick="showPassword()" id="eye" class="absolute top-[32%] right-[4%] cursor-pointer text-lightptext hover:text-gray-700"><i class="fa-solid fa-eye"></i></p>
+                            <p onclick="showPassword()" id="eye"
+                                class="absolute top-[32%] right-[4%] cursor-pointer text-lightptext hover:text-gray-700">
+                                <i class="fa-solid fa-eye"></i>
+                            </p>
+                        </div>
 
+                        <!-- form password validator Error  teller -->
+
+                        <div id="passwordError" class="relative z-0 w-full mb-5 group text-sm text-danger border-2 border-danger p-1 rounded-lg shadow-inset-red justify-between hidden">
+                            <p>
+                                Passwords do not match.
+                            </p>
+                            <button onclick="passwordError()" class="hover:bg-lightbg px-2 rounded-lg font-medium">
+                                <i class="fa-solid fa-xmark hover:rotate-90 ease-in duration-200"></i>
+                            </button>
                         </div>
                         <div class="flex justify-center gap-2">
-                            <button 
-                            type="reset"
-                            class="text-white !bg-lightbtn hover:!bg-lightbtnhover focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-base w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                            Reset
-                        </button>
-                        <button 
-                        type="submit"
-                        class="text-white !bg-emtext hover:!bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-base w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                        Submit
-                    </button>
+                            <button type="reset"
+                                class="text-white !bg-lightbtn hover:!bg-lightbtnhover focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-base w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                Reset
+                            </button>
+                            <button type="submit"
+                                class="text-white !bg-emtext hover:!bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-base w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                Submit
+                            </button>
                         </div>
-                        <p class="text-lightptext text-center text-sm pt-2">Already have an account? <a href="/login" class="hover:text-emtext">Login now</a></p>
+                        <p class="text-lightptext text-center text-sm pt-2">
+                            Already have an account?
+                            <a href="/login" class="hover:text-emtext">Login now</a>
+                        </p>
+                        <!-- google authentication -->
+                        <div class="flex justify-center w-full mt-2">
+                            <a data-th-href="@{'/oauth2/authorization/google'}"
+                                class="w-max p-2.5 px-4 bg-white rounded-lg flex justify-center items-center gap-1.5 hover:bg-slate-100">
+                                <img class="w-5" src="/images/google.png" alt="" />
+                                <h4 class="text-sm font-normal">Login with Google</h4>
+                            </a>
+                        </div>
                     </form>
                 </div>
                 <div class="h-4 bg-lightextra"></div>
             </div>
         </div>
+
+        <th:block data-th-if="${session.registeredSuccessfully}" data-th-text="${@sessionHelper.removeSession()}"></th:block>
 
         <!-- Script -->
         <script src="js/eyePass.js"></script>
