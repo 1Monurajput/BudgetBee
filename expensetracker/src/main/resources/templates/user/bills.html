@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" data-th-replace="~{base :: parent(~{:: #content},~{::title})}">
+  <head>
+    <title>Bills</title>
+  </head>
+
+  <body>
+    <div id="content" class="border border-lightborder min-h-screen my-2">
+      <div>
+        <div>
+          <h4 class="text-center text-3xl font-normal bg-lightbtn">
+            Your Bills
+          </h4>
+        </div>
+
+        <div class="flex justify-center items-center w-full p-16">
+          <div
+            class="flex justify-center items-center border border-lightborder rounded-lg w-full py-12"
+          >
+            <input
+              class="w-80 rounded-lg"
+              type="text"
+              placeholder="Search Your bill"
+            />
+          </div>
+        </div>
+
+        <div class="p-6">
+          <div class="border border-lightborder rounded-lg">
+            <!-- // table -->
+            <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+              <table
+                class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+              >
+                <thead
+                  class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+                >
+                  <tr>
+                    <th scope="col" class="px-6 py-3">Title</th>
+                    <th scope="col" class="px-6 py-3">Amount</th>
+                    <th scope="col" class="px-6 py-3">Status</th>
+                    <th scope="col" class="px-6 py-3">Due Date</th>
+                    <th scope="col" class="px-6 py-3">Date</th>
+                    <th scope="col" class="px-6 py-3">Action</th>
+                  </tr>
+                </thead>
+                <tbody data-th-each="bill : ${bills}">
+                  <tr
+                    class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700"
+                  >
+                    <th
+                      scope="row"
+                      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                      data-th-text="${bill.title}"
+                    >
+                      Apple MacBook Pro 17"
+                    </th>
+                    <td class="px-6 py-4" data-th-text="${bill.rate}">
+                      Silver
+                    </td>
+                    <div data-th-if="${bill.status == 'paid'}">
+                      <td class="px-6 py-4 text-emtext">Paid</td>
+                    </div>
+                    <div data-th-unless="${bill.status == 'paid'}">
+                        <td class="px-6 py-4 text-danger" data-th-text="${bill.status}" >Status</td>
+                    </div>
+                    <td class="px-6 py-4 text-danger" data-th-text="${bill.dueDate}">
+                      $2999
+                    </td>
+                    <td class="px-6 py-4" data-th-text="${bill.date}">$2999</td>
+                    <td class="px-6 py-4">
+                      <div class="flex gap-3">
+                        <i
+                          class="fa-solid fa-paperclip text-lightextra cursor-pointer"
+                        ></i>
+                        <button th:onclick="billModalBtn('[[${bill.billAttachement}]]')">
+                          <i id="billModalBtn"
+                          class="fa-solid fa-eye text-emtext cursor-pointer"
+                        ></i>
+                        </button>
+                        <button th:onclick="deleteBill('[[${bill.billId}]]')">
+                          <i
+                          class="fa-solid fa-trash text-danger cursor-pointer"
+                        ></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div data-th-replace="~{user/modal/billpreviewmodal :: billpreview}"></div>
+      <div data-th-replace="~{/user/modal/add_bill :: addBill}">this is my text</div>
+
+      <script type="module" src="/js/bills.js"></script>
+    </div>
+  </body>
+</html>

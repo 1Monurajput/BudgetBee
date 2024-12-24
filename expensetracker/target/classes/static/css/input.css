@@ -44,3 +44,16 @@
 #strong_weak:hover + #strong_weak_hover{
     display: block;
 }
+.non-scroll-base{
+    overflow-y: hidden;
+}
+.dropdown:focus {
+    outline: none;
+    /* border: none; */
+    border-color: #229799;
+    box-shadow: none; 
+}
+.dropdown option:checked {
+    color: #ffffff;
+    background-color: #229799;
+}

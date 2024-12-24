@@ -40,4 +40,17 @@ public class UserServiceImpl implements UserServices {
         return userRepo.findByEmail(email);
     }
 
+    @Override
+    public void update(String email,String name, String phone,String fileUrl) {
+        
+        Users user = userRepo.findByEmail(email).orElseThrow(null);
+        user.setName(name);
+        user.setPhone(phone);
+        if(fileUrl !=null && !fileUrl.isEmpty()){
+            user.setProfilePicture(fileUrl);
+        }
+        userRepo.save(user);
+
+    }
+
 }
