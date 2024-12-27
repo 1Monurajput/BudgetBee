@@ -27,7 +27,6 @@ public class BillsServiceImpl implements BillService {
   @Override
   public Bills saveBill(Bills bill) {
     bill.setBillId(UUID.randomUUID().toString());
-    bill.setTime(LocalDateTime.now());
 
     Users user = (Users) session.getAttribute("user");
     bill.setUser(user);
@@ -43,6 +42,17 @@ public class BillsServiceImpl implements BillService {
   public void deleteById(String id) {
     System.out.println("in implementation");
     billRepo.deleteById(id);
+  }
+
+  @Override
+  public Optional<Bills> findById(String id) {
+
+    return billRepo.findById(id);
+  }
+
+  @Override
+  public void updateBill(Bills bill) {
+    billRepo.save(bill);
   }
 
 }

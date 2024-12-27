@@ -1,38 +1,192 @@
 <div data-th-fragment="billpreview">
-  
-  <!-- Main modal -->
-  <div id="bill-modal"  tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-      <div class="relative p-4 w-full max-w-2xl max-h-full">
-          <!-- Modal content -->
-          <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-              <!-- Modal header -->
-              <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-                  <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                      Static modal
-                  </h3>
-                  <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="bill-modal">
-                      <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                      </svg>
-                      <span class="sr-only">Close modal</span>
-                  </button>
-              </div>
-              <!-- Modal body -->
-              <div class="p-4 md:p-5 space-y-4">
-                  <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                      With less than a month to go before the European Union enacts new consumer privacy laws for its citizens, companies around the world are updating their terms of service agreements to comply.
-                  </p>
-                  <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                      The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25 and is meant to ensure a common set of data rights in the European Union. It requires organizations to notify users as soon as possible of high-risk data breaches that could personally affect them.
-                  </p>
-              </div>
-              <!-- Modal footer -->
-              <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
-                  <button data-modal-hide="bill-modal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">I accept</button>
-                  <button data-modal-hide="bill-modal" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Decline</button>
-              </div>
-          </div>
-      </div>
-  </div>
-  
+
+    <!-- Main modal -->
+    <div id="bill-modal" tabindex="-1" aria-hidden="true"
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative p-4 w-full max-w-2xl max-h-full">
+            <!-- Modal content -->
+            <div class="relative bg-lightbg rounded-lg shadow dark:bg-gray-700">
+                <!-- Modal header -->
+                <div class="flex justify-end px-2 pt-2 absolute right-0 top-0">
+                    <button type="button"
+                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                        data-modal-hide="bill-modal">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                </div>
+                <!-- Modal body -->
+                <div class="p-4 md:p-5 space-y-4">
+                    <div class="flex justify-center items-center w-full my-4">
+                        <div class="reg-form w-[33rem] border-2 border-lightborder rounded-xl overflow-hidden">
+                            <div class="h-4 bg-lightextra"></div>
+                            <div class="p-6">
+                                <!-- form -->
+                                <form id="viewBill" class="max-w-md mx-auto">
+                                    <h4 id="modalTitle" class="text-center text-3xl pb-2 font-normal">
+                                        View Bill
+                                    </h4>
+                                    <input type="hidden" id="openBillId">
+
+
+                                    <div class="relative z-0 w-full mb-5 group">
+                                        <input type="text" name="billTitle" id="billTitle"
+                                            class="block py-2.5 px-0 w-full text-base text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                            placeholder=" " />
+                                        <label for="billTitle"
+                                            class="peer-focus:font-medium absolute text-base text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Title</label>
+                                    </div>
+
+                                    <div class="grid md:grid-cols-2 md:gap-6">
+                                        <!-- First input (Amount) -->
+                                        <div class="relative z-0 w-full mb-5 group">
+                                            <input type="number" name="billRate" id="billRate"
+                                                class="block py-2.5 px-0 w-full text-base bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer text-gray-900"
+                                                placeholder=" " />
+                                            <label for="billRate"
+                                                class="peer-focus:font-medium absolute text-base text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                                                Amount</label>
+                                        </div>
+
+                                        <!-- Second select (Payment Method) -->
+                                        <div class="relative z-0 w-full mb-5 group flex">
+                                            <select id="billCurrency" name="billCurrency"
+                                                class="dropdown w-full border-0 bg-transparent text-gray-900 pl-1 border-b-2 border-gray-300">
+                                                <option value="rupee">&#x20B9; Rupees</option>
+                                                <option value="dollar">&#x24; Dollar</option>
+                                                <option value="euro">&#x20AC; Euro</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="grid md:grid-cols md:gap-6">
+                                        <div class="relative z-0 w-full mb-5 group">
+                                            <input type="date" name="billDate" id="billDate"
+                                                class="block py-2.5 px-0 w-full text-base text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                                placeholder=" " />
+                                            <label for="billDate"
+                                                class="peer-focus:font-medium absolute text-base text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                                                Date</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="grid md:grid-cols-2 md:gap-6">
+                                        <div class="relative z-0 w-full md:w-1/2 mb-5 group">
+                                            <select id="billPaymentMethod" name="billPaymentMethod"
+                                                class=" w-full dropdown border-0 bg-transparent text-gray-900 pl-1  border-b-2 border-gray-300">
+                                                <option value="cash">Cash</option>
+                                                <option value="card">Card</option>
+                                                <option value="upi">UPI</option>
+                                                <option value="bank">Bank</option>
+
+                                            </select>
+                                        </div>
+                                        <div class="relative z-0 w-full md:w-1/2 mb-5 group">
+                                            <select id="billStatus" name="billStatus"
+                                                class="w-full dropdown border-0 bg-transparent text-gray-900 pl-1  border-b-2 border-gray-300">
+                                                <option value="paid">Paid</option>
+                                                <option value="unpaid">Unpaid</option>
+                                                <option value="partially">Partially paid</option>
+
+                                            </select>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="relative z-0 w-full mb-5 group">
+                                        <input type="text" name="billDescription" id="billDescription"
+                                            class="block py-2.5 px-0 w-full text-base text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                            placeholder=" " />
+                                        <label for="billDescription"
+                                            class="peer-focus:font-medium absolute text-base text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Description</label>
+                                    </div>
+
+                                    <div class="grid md:grid-cols-2 md:gap-6">
+                                        <div class="relative z-0 w-full mb-5 group">
+                                            <select id="billCategories" name="billCategories"
+                                                class=" dropdown border-0 bg-transparent text-gray-900 pl-1  border-b-2 border-gray-300">
+                                                <option value="" disabled selected>Select a category</option>
+                                                <option value="home">Home & Living</option>
+                                                <option value="electronics">Electronics</option>
+                                                <option value="fashion">Fashion</option>
+                                                <option value="books">Books</option>
+                                                <option value="sports">Sports</option>
+                                                <option value="trip">Trip</option>
+                                                <option value="other">Other</option>
+                                            </select>
+                                        </div>
+                                        <div id="dueDateBlock" class="relative z-0 w-full mb-5 group">
+                                            <input type="date" name="billDueDate" id="billDueDate"
+                                                class="block py-2.5 px-0 w-full text-base text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                                placeholder=" " />
+                                            <label for="billDueDate"
+                                                class="peer-focus:font-medium absolute text-base text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Due
+                                                Date</label>
+                                        </div>
+                                    </div>
+                                    <div class="grid md:grid-cols-2 md:gap-6">
+
+                                        <div class="relative z-0 w-full mb-5 group">
+                                            <input type="text" name="billBiller" id="billBiller"
+                                                class="block py-2.5 px-0 w-full text-base text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                                placeholder=" " />
+                                            <label for="billBiller"
+                                                class="peer-focus:font-medium absolute text-base text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Biller</label>
+                                        </div>
+                                        <div class="relative z-0 w-full mb-5 group">
+                                            <input type="number" name="billBillerPhone" id="billBillerPhone"
+                                                class="block py-2.5 px-0 w-full text-base text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                                placeholder=" " />
+                                            <label for="billBillerPhone"
+                                                class="peer-focus:font-medium absolute text-base text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Biller's
+                                                Phone</label>
+                                        </div>
+                                    </div>
+                                    <div id="imageBlock" class="hidden relative z-0 w-full mb-5 group">
+                                        <label for="billAttachement" class="text-gray-500 text-base">Attachement</label>
+                                        <input type="file" name="billAttachement" id="billAttachement"
+                                            class="block py-2.5 px-0 w-full text-base text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                            placeholder=" " accept="image/*" />
+
+                                    </div>
+
+                                    <div id="billBox" class="relative z-0 w-full mb-5 group flex justify-center">
+                                        <img class="max-h-60" src="" alt="" id="billImg">
+                                    </div>
+                                    <div class="relative z-0 w-full mb-5 group">
+                                        <p id="time" class="text-lightptext text-sm ">Bill saved on : </p>
+                                    </div>
+
+
+
+                                    <div class="flex justify-center gap-2">
+
+                                        <!-- Submit button -->
+                                        <button id="closebtn" type="button"
+                                            class="text-white !bg-lightptext hover:!bg-gray-600 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-base px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                            Close
+                                        </button>
+                                        <button id="editBill" type="button"
+                                            class="text-white !bg-lightbtn hover:!bg-lightbtnhover focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-base px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 ">
+                                            Edit
+                                        </button>
+                                        <button id="submitBill" type="submit"
+                                            class=" hidden text-white !bg-emtext hover:!bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-base px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 ">
+                                            Submit
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="h-4 bg-lightextra"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>

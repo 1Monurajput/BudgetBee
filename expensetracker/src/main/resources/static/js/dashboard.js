@@ -36,9 +36,11 @@ var dueDateDropDown = document.getElementById("dueDateBlock")
 dueDateShower.addEventListener("change",()=>{
     if(dueDateShower.value == "paid"){
         dueDateDropDown.style.display="none";
+        
     }
     else{
         dueDateDropDown.style.display="block";
+        
     }
 })
 
@@ -79,6 +81,8 @@ addBillForm.addEventListener("submit",async(event)=>{
     let biller= document.getElementById("addBillModalbiller").value;
     let billerPhone = document.getElementById("addBillModalPhone").value;
 
+    let date = document.getElementById("addBillModalDate").value;
+
     const formData = new FormData();
 
     formData.append("name",name);
@@ -91,6 +95,7 @@ addBillForm.addEventListener("submit",async(event)=>{
     formData.append("dueDate",dueDate);
     formData.append("biller",biller);
     formData.append("billerPhone",billerPhone);
+    formData.append("date",date);
 
     if(previewImage){
         formData.append("image",previewImage);
@@ -104,15 +109,12 @@ addBillForm.addEventListener("submit",async(event)=>{
 
     if(response.ok){
         const responseData = await response.json();
-        console.log("inside response js");
 
         document.getElementById("submitDoneAlert").style.display="block";
         addBillForm.style.display="none";
 
     }
-    else{
-        console.log("Not saved");
-    }
+    
     
    } catch (error) {
     console.log("error : " + error) ;

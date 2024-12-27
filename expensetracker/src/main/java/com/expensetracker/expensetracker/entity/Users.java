@@ -57,7 +57,7 @@ public class Users implements UserDetails {
 
     private LocalDateTime lastLogin;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER,orphanRemoval = true)
     private List<Bills> bills = new ArrayList<>();
 
     @Override

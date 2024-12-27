@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.expensetracker.expensetracker.entity.Bills;
 import com.expensetracker.expensetracker.entity.Users;
 import com.expensetracker.expensetracker.repos.BillRepo;
+import com.expensetracker.expensetracker.repos.UserRepo;
 import com.expensetracker.expensetracker.services.BillService;
 import com.expensetracker.expensetracker.services.UserServices;
 
@@ -28,13 +29,11 @@ public class UserController {
 
     @Autowired
     private HttpSession session;
-
-    @Autowired
-    private BillRepo billRepo;
     
     @RequestMapping("/dashboard")
     public String dashboard(){
         System.out.println("This is dashboard...............");
+
         return "user/dashboard";
     }
 
@@ -60,24 +59,16 @@ public class UserController {
 
         List<Bills>bills = billService.findByUser(user);
 
-
-        System.out.println("before deletion......... ..........................: " + bills.get(0).getBillId());
-        // billRepo.deleteById("4ffa2f52-cff1-48b9-85fc-62adb8488b58");
-       Bills bill2 =  billRepo.findById("7cdf8681-2ff9-4808-ac92-17be7249aecf").orElseThrow(null);
-
-       System.out.println(bill2.getBillId());
-       billRepo.deleteById(bill2.getBillId());
-
-       System.out.println(bill2.getTitle());
-        System.out.println("after deletion...............");
-
-
-        
-
-        if(bills.size() >0){
-            model.addAttribute("bills", bills);
+        for(int i = 0;i<bills.size();i++){
+            System.out.println(bills.get(i).getBillId() + " : " + bills.get(i).getTitle());
         }
+
+        model.addAttribute("bills", bills);
+
         return "user/bills";
     }
+
+
+
    
 }

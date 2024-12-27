@@ -1,11 +1,7 @@
 package com.expensetracker.expensetracker.entity;
 
-import java.sql.Date;
 import java.time.LocalDateTime;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
@@ -18,8 +14,8 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 public class Bills {
 
@@ -37,12 +33,11 @@ public class Bills {
     private String dueDate;
     private String biller;
     private String billerPhone;
-    private LocalDateTime time;
+    private String time;
     private String billAttachement;
 
+
     @ManyToOne
-    @JsonIgnore
     private Users user;
 
 }
-//     @JsonIgnore

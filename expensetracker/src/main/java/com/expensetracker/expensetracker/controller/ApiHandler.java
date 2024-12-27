@@ -1,11 +1,7 @@
 package com.expensetracker.expensetracker.controller;
 
-import java.sql.Date;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -13,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.expensetracker.expensetracker.entity.Bills;
 import com.expensetracker.expensetracker.entity.Users;
+import com.expensetracker.expensetracker.helper.NotFoundException;
 import com.expensetracker.expensetracker.services.BillService;
 import com.expensetracker.expensetracker.services.ImageService;
 import com.expensetracker.expensetracker.services.UserServices;
@@ -103,6 +99,7 @@ public class ApiHandler {
     }
 
     // This is for adding bills in to the database
+    // save bill
     @PostMapping(value = "/addbill")
     public ResponseEntity<String> addBill(@RequestParam("name") String name,
             @RequestParam("rate") double rate,
@@ -114,7 +111,8 @@ public class ApiHandler {
             @RequestParam("dueDate") String dueDate,
             @RequestParam("biller") String biller,
             @RequestParam("billerPhone") String billerPhone,
-            @RequestParam(value="image", required=false) MultipartFile image) {
+            @RequestParam("date") String date,
+            @RequestParam(value = "image", required = false) MultipartFile image) {
 
         System.out.println("Add bill Api...........");
 
@@ -129,15 +127,14 @@ public class ApiHandler {
         bill.setDueDate(dueDate);
         bill.setBiller(biller);
         bill.setBillerPhone(billerPhone);
+        bill.setDate(date);
 
-        LocalDateTime time = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm dd-MM-yyyy");
+        String newTime = LocalDateTime.now().format(formatter);
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm yyyy-mm-dd");
-        String newTime = time.format(formatter);
+        bill.setTime(newTime);
 
-        bill.setDate(newTime);
-
-        if(image != null && !image.isEmpty()){
+        if (image != null && !image.isEmpty()) {
             String fileUrl = imageService.uploadImg(image, UUID.randomUUID().toString());
             bill.setBillAttachement(fileUrl);
         }
@@ -153,10 +150,72 @@ public class ApiHandler {
 
     // Delete bill api
     @DeleteMapping("/bill/delete")
-    public void deleteBill(@RequestParam String billId){
+    public void deleteBill(@RequestParam String billId) {
 
         System.out.println("IN deleting bill api");
         System.out.println(billId);
-        billService.deleteById(billId);
+
+        // fetch user list
+        // remove from user list
+        // remove user from bill
+        // save bill
+
+        Users user = (Users) session.getAttribute("user");
+
+        Bills bill = billService.findById(billId)
+                .orElseThrow(() -> new NotFoundException("Bill with this id not found"));
+
+        System.out.println(bill.getBillId() + " : " + bill.getTitle());
+
+        user.getBills().remove(bill);
+        bill.setUser(null);
+        billService.saveBill(bill);
+        System.out.println("Successfully removed from database");
+    }
+
+    @PutMapping("/bill/update")
+    public ResponseEntity<String> updateBill(
+            @RequestParam("name") String name,
+            @RequestParam("rate") String rate,
+            @RequestParam("method") String method,
+            @RequestParam("currency") String currency,
+            @RequestParam("status") String status,
+            @RequestParam("description") String description,
+            @RequestParam("categories") String categories,
+            @RequestParam("dueDate") String dueDate,
+            @RequestParam("biller") String biller,
+            @RequestParam("billerPhone") String billerPhone,
+            @RequestParam("date") String billDate,
+            @RequestParam("id") String billId,
+            @RequestParam(value = "image", required = false) MultipartFile image) {
+        
+
+            System.out.println("in bill update api : " + name);
+
+
+
+            Bills bill = billService.findById(billId).orElseThrow(() -> new NotFoundException("Bill not found with this id"));
+
+            bill.setTitle(name);
+            bill.setRate(Double.parseDouble(rate));
+            bill.setMethod(method);
+            bill.setCurrency(currency);
+            bill.setStatus(status);
+            bill.setDescription(description);
+            bill.setCategories(categories);
+            bill.setDueDate(dueDate);
+            bill.setBiller(biller);
+            bill.setBillerPhone(billerPhone);
+            bill.setDate(billDate);
+
+            if(image != null && !image.isEmpty()){
+                String imgUrl = bill.getBillAttachement();
+                imageService.replaceImg(image, imgUrl);
+            }
+
+
+            billService.updateBill(bill);
+
+            return ResponseEntity.ok("Successfully update");
     }
 }
