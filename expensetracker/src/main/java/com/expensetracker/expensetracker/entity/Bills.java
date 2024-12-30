@@ -2,6 +2,8 @@ package com.expensetracker.expensetracker.entity;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
@@ -38,6 +40,7 @@ public class Bills {
 
 
     @ManyToOne
+    @JsonIgnore
     private Users user;
 
 }

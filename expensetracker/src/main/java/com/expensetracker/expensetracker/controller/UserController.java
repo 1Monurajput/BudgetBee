@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.expensetracker.expensetracker.entity.Bills;
 import com.expensetracker.expensetracker.entity.Users;
-import com.expensetracker.expensetracker.repos.BillRepo;
-import com.expensetracker.expensetracker.repos.UserRepo;
 import com.expensetracker.expensetracker.services.BillService;
 import com.expensetracker.expensetracker.services.UserServices;
 
@@ -58,10 +56,6 @@ public class UserController {
         Users user = (Users) session.getAttribute("user");
 
         List<Bills>bills = billService.findByUser(user);
-
-        for(int i = 0;i<bills.size();i++){
-            System.out.println(bills.get(i).getBillId() + " : " + bills.get(i).getTitle());
-        }
 
         model.addAttribute("bills", bills);
 

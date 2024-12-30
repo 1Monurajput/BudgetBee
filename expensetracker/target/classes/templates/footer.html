@@ -1,0 +1,15 @@
+<div data-th-fragment="footer">
+    <div class="bg-lightNav w-full">
+        <div class="max-w-screen-xl mx-auto py-4 px-2">
+            <div class="flex justify-between items-center gap-2">
+                <p class="text-lg">
+                    &copy; <span id="year"></span> BudgetBee. All rights reserved.
+                </p>
+                <button class="p-2 px-4 rounded-lg bg-lightbtn hover:bg-lightbtnhover text-lg text-white font-medium">Support?</button>
+            </div>
+        </div>
+    </div>
+    <script>
+         document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</div>

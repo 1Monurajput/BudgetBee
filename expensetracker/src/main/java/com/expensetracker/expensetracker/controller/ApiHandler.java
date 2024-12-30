@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.service.annotation.GetExchange;
 
 import com.expensetracker.expensetracker.entity.Bills;
 import com.expensetracker.expensetracker.entity.Users;
@@ -23,6 +24,8 @@ import com.expensetracker.expensetracker.helper.NotFoundException;
 import com.expensetracker.expensetracker.services.BillService;
 import com.expensetracker.expensetracker.services.ImageService;
 import com.expensetracker.expensetracker.services.UserServices;
+
+import java.util.*;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -217,5 +220,21 @@ public class ApiHandler {
             billService.updateBill(bill);
 
             return ResponseEntity.ok("Successfully update");
+    }
+
+
+    @GetExchange("/bills/data")
+    public ResponseEntity<List> billFilter(){
+        System.out.println("In bill filter api");
+
+        List<Bills>bills = new ArrayList<>();
+        Users user = (Users) session.getAttribute("user");
+        bills = billService.findByUser(user);
+
+        for(int i = 0;i<bills.size();i++){
+            System.out.println(bills.get(i).getBillId());
+        }
+
+        return ResponseEntity.ok(bills);
     }
 }
