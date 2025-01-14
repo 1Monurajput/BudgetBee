@@ -17,7 +17,7 @@ const eleYear = document.getElementById("year");
 var budget = 0;
 var currentBudget = 0;
 var goal = 0;
-var budgetData= null;
+var budgetData = null;
 var year = new Date().getFullYear();
 var monthArray = [
   "jan",
@@ -33,7 +33,6 @@ var monthArray = [
   "december",
 ];
 var month = monthArray[new Date().getMonth()];
-
 
 var paidData = 0;
 var unpaidData = 0;
@@ -68,30 +67,28 @@ const eleNonFunctionalChart = document.querySelectorAll(
   ".non-functional-chart"
 );
 
-
 yearDrop2.addEventListener("change", () => {
   year = yearDrop2.value;
+  checkMonth();
+  monthlyData();
   monthlyBillsData();
+  
 });
 
 monthdrop2.addEventListener("change", () => {
-  month = monthdrop2.value;
-  if(month ==="Dec"){
-    month = 'december';
-  }
+  checkMonth();
+  monthlyData();
   monthlyBillsData();
-  console.log(month);
+
 });
 
-function indianCurrency(num){
-
-  var number = num.toLocaleString('en-IN');
+function indianCurrency(num) {
+  var number = num.toLocaleString("en-IN");
   return number;
 }
 
 async function monthlyData() {
   showLoader();
-  console.log("monthly data");
 
   try {
     const response = await fetch(
@@ -106,35 +103,32 @@ async function monthlyData() {
 
     if (response.ok) {
       const data = await response.json();
-      console.log(data);
+      
       budgetData = data;
 
       if (data.income != null && data.income > 100) {
-        
         showFunctionalChart();
 
         budget = data.budget;
-      currentBudget = data.liveBudget;
-      goal = data.goal;
-      
-      eleMonth.innerHTML=data.month;
-      eleYear.innerHTML=data.year;
-      eleIncome.innerHTML=indianCurrency(data.income) + "₹";
-      eleBudget.innerHTML=indianCurrency(data.budget)+ "₹";
-      eleGoal.innerHTML=indianCurrency(data.goal) + "₹";
-      if(data.goal == true){
-        eleReach.innerHTML = "Yes";
-      }
-      else{
-        eleReach.innerHTML = "No";
-      }
-      eleUnrecorded.innerHTML=indianCurrency(data.unrecodedExpense) + "₹";
-      eleRecorded.innerHTML=indianCurrency(data.expense)+ "₹";
-      eleTotal.innerHTML = indianCurrency(data.totalExpense) + "₹";
+        currentBudget = data.liveBudget;
+        goal = data.goal;
 
-      createBudgetToCurrentBudget();
-      createBudgetToGoal();
+        eleMonth.innerHTML = data.month;
+        eleYear.innerHTML = data.year;
+        eleIncome.innerHTML = indianCurrency(data.income) + "₹";
+        eleBudget.innerHTML = indianCurrency(data.budget) + "₹";
+        eleGoal.innerHTML = indianCurrency(data.goal) + "₹";
+        if (data.goal == true) {
+          eleReach.innerHTML = "Yes";
+        } else {
+          eleReach.innerHTML = "No";
+        }
+        eleUnrecorded.innerHTML = indianCurrency(data.unrecodedExpense) + "₹";
+        eleRecorded.innerHTML = indianCurrency(data.expense) + "₹";
+        eleTotal.innerHTML = indianCurrency(data.totalExpense) + "₹";
 
+        createBudgetToCurrentBudget();
+        createBudgetToGoal();
       } else {
         hideFunctionalChart();
       }
@@ -147,21 +141,22 @@ async function monthlyData() {
   hideLoader();
 }
 
-async function monthlyBillsData(){
+async function monthlyBillsData() {
   showLoader();
-  console.log("monthly Bills data...................");
-  console.log(monthdrop2);
   try {
-    const response = await fetch(`/api/monthly_bill?month=${month}&year=${year}`,{
-      method:"GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const response = await fetch(
+      `/api/monthly_bill?month=${month}&year=${year}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
-    if(response.ok){
+    if (response.ok) {
       const data = await response.json();
-      console.log(data);
+      
 
       dataArray = data;
 
@@ -216,49 +211,53 @@ async function monthlyBillsData(){
 
           default:
             other++;
-            otherAmounts +=bill.rate;
+            otherAmounts += bill.rate;
             break;
         }
 
         createChart();
         createCatChart();
-        createBarChart()
-        createCatAmountChart()
-
+        createBarChart();
+        createCatAmountChart();
       });
-
-
     }
-
   } catch (error) {
     console.log("error : " + error);
   }
 
-
-  console.log("year : " + year);
-  console.log("Month : " + month);
+  checkMonth();
 
   var eleLive = document.getElementById("live");
   var liveYear = new Date().getFullYear();
   var liveMonth = monthArray[new Date().getMonth()];
-  console.log("live year : " + liveYear);
-  console.log("live Month : " + liveMonth);
 
-  if(liveYear == year && (month == liveMonth || month == "this")){
-    eleLive.style.display="block";
-  }
-  else{
-    eleLive.style.display="none"
+  if (liveYear == year && (month == liveMonth || month == "this")) {
+    eleLive.style.display = "block";
+  } else {
+    eleLive.style.display = "none";
   }
   hideLoader();
 }
 
+function checkMonth() {
+  month = monthdrop2.value;
+  
+  if (month == "dec") {
+    month = "december";
+  } else if (month == "this") {
+    month = monthArray[new Date().getMonth()];
+  }
+  
+}
+
 // this chart is for budget to currentBudget;
+var budgetToCurrentBudgetPie = null;
 function createBudgetToCurrentBudget() {
   const budgetTocurrentBudget = document.getElementById(
     "budgetToCurrentBudget"
   );
   if (budgetTocurrentBudget) {
+
     const ctx = budgetTocurrentBudget.getContext("2d");
     var usedBudget = budget - currentBudget;
     const eleTotalBill = document.getElementById("totalBudget");
@@ -266,7 +265,11 @@ function createBudgetToCurrentBudget() {
       eleTotalBill.innerHTML = budget + "₹";
     }
 
-    const budgetToCurrentBudgetPie = new Chart(ctx, {
+    if(budgetToCurrentBudgetPie){
+      budgetToCurrentBudgetPie.destroy();
+    }
+
+    budgetToCurrentBudgetPie = new Chart(ctx, {
       type: "pie",
       data: {
         labels: ["Used budget", "Remaining budget"],
@@ -305,13 +308,15 @@ function createBudgetToCurrentBudget() {
     });
   }
 }
-
+var budgetToGoalPie = null;
 function createBudgetToGoal() {
-  
   const budgetToGoal = document.getElementById("budgetToGoal");
 
   if (budgetToGoal) {
-    
+
+    if(budgetToGoalPie){
+      budgetToGoalPie.destroy();
+    }
     const ctx = budgetToGoal.getContext("2d");
 
     const usedBudget = budget - currentBudget; // Budget already used
@@ -340,7 +345,7 @@ function createBudgetToGoal() {
     }
 
     // Create the chart
-    new Chart(ctx, {
+    budgetToGoalPie = new Chart(ctx, {
       type: "pie",
       data: {
         labels: labels,
@@ -389,7 +394,7 @@ function createChart() {
       billStatusChartInstance.destroy();
     }
 
-     billStatusChartInstance = new Chart(ctx, {
+    billStatusChartInstance = new Chart(ctx, {
       type: "pie",
       data: {
         labels: ["Paid", "Unpaid", "Partially-paid"],
@@ -439,7 +444,7 @@ function createCatChart() {
   const catChart = document.getElementById("catChart");
   if (catChart) {
     const ctx = catChart.getContext("2d");
-    if(catChartPie){
+    if (catChartPie) {
       catChartPie.destroy();
     }
 
@@ -511,11 +516,11 @@ function createBarChart() {
   if (amountStatusId) {
     const ctx = amountStatusId.getContext("2d");
 
-    if(amountStatus){
+    if (amountStatus) {
       amountStatus.destroy();
     }
 
-     amountStatus = new Chart(ctx, {
+    amountStatus = new Chart(ctx, {
       type: "bar",
       data: {
         labels: ["Paid", "Unpaid", "Partially-paid"],
@@ -581,7 +586,7 @@ function createCatAmountChart() {
   if (catAmount) {
     const ctx = catAmount.getContext("2d");
 
-    if(catAmountChart){
+    if (catAmountChart) {
       catAmountChart.destroy();
     }
     catAmountChart = new Chart(ctx, {

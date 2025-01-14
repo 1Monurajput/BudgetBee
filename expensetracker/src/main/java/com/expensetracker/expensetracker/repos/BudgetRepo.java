@@ -11,4 +11,5 @@ import java.util.*;
 public interface BudgetRepo extends JpaRepository<Budget,String> {
 
     List<Budget> findByUserAndYear(Users user,String year);
+    Optional<Budget> findByMonthAndYearAndUser(String month,String year,Users user);
 }

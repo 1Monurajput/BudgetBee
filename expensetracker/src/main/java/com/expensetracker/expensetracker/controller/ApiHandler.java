@@ -426,9 +426,9 @@ public class ApiHandler {
     @GetMapping("/monthly_yearly_data")
     public ResponseEntity<Budget> budgetFromMonthAndYear(@RequestParam("month") String month,@RequestParam("year") String year){
 
-        String budgetId = yearlyBudgetService.getMonthlyBudgetId(month,year);
-
-        Budget budget = budgetService.findById(budgetId).orElseThrow(() -> new NotFoundException("Resource not found"));
+        
+        Budget budget = budgetService.findByMonthAndYearAndUser(month, year).orElseThrow(() -> new NotFoundException("Resource not found Exception"));
+        System.out.println("Testing monthly_yearly_data : " + budget.getBudgetId() );
         return ResponseEntity.ok(budget);
     }
 

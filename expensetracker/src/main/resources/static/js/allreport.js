@@ -53,7 +53,7 @@ function feedData(){
 
     userData[years[0]].forEach((item)=>{
         const options = document.createElement("option");
-        options.value=item;
+        options.value=item.toLowerCase();
         options.text=item;
         monthDrop.appendChild(options);
     })
@@ -64,10 +64,10 @@ yearDrop.addEventListener("change",()=>{
     monthDrop.innerHTML="";
     userData[input].forEach((item) =>{
         const options = document.createElement("option");
-        options.value=item;
+        options.value=item.toLowerCase();
         options.text=item;
         monthDrop.appendChild(options);
     })
 
-    
+    monthDrop.selectedIndex=0;
 })

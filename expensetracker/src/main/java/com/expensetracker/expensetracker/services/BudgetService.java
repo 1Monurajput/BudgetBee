@@ -10,4 +10,6 @@ public interface BudgetService {
     Optional<Budget> findById(String id);
 
     void update(Budget budget);
+
+    Optional<Budget> findByMonthAndYearAndUser(String month,String year);
 }

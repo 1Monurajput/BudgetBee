@@ -110,4 +110,10 @@ public class budgetServiceImpl implements BudgetService {
         budgetRepo.save(budget);
     }
 
+    @Override
+    public Optional<Budget> findByMonthAndYearAndUser(String month, String year) {
+        Users user = (Users) session.getAttribute("user");
+        return budgetRepo.findByMonthAndYearAndUser(month,year,user);
+    }
+
 }
