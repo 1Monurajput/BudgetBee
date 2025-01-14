@@ -67,3 +67,15 @@
 .active-btn:hover{
     background-color: #da4100!important;
 }
+
+
+.allreports .data h4:nth-child(odd){
+    background-color: #e0dede;
+} 
+.allreports .info h4:nth-child(odd){
+    background-color: #e0dede;
+}
+
+#live:hover #liveLabel{
+    display: block;
+}

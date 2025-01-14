@@ -104,6 +104,7 @@ document.getElementById("closebtn").addEventListener("click", () => {
 // Delete Bill
 
 async function deleteBill(billId, event) {
+    showLoader();
     var newBillId = "";
     console.log(billId);
     for (let i = 0; i < billId.length; i++) {
@@ -129,6 +130,8 @@ async function deleteBill(billId, event) {
     } catch (error) {
         console.log("error  : " + error);
     }
+
+    hideLoader();
 }
 
 // edit bill
@@ -163,6 +166,7 @@ editBill.addEventListener("click", async () => {
 // update bill
 
 form.addEventListener("submit",async(event)=>{
+    showLoader();
 
     event.preventDefault();
 
@@ -204,6 +208,8 @@ form.addEventListener("submit",async(event)=>{
     } catch (error) {
         console.log("Error : " + error);
     }
+
+    hideLoader();
 })
 
 

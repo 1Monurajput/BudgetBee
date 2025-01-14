@@ -6,7 +6,7 @@
 </head>
 
 <body>
-  <div id="content" class="border border-lightborder min-h-screen my-2 rounded-lg overflow-hidden">
+  <div id="content" class="relative border border-lightborder min-h-screen my-2 rounded-lg overflow-hidden">
     <div>
       <div>
         <h4 class="text-center text-3xl font-normal bg-lightbtn">
@@ -23,18 +23,18 @@
                 <h4 class="text-lightptext text-sm">Total Saved</h4>
               </div>
   
-              <h4 class="text-xl font-semibold my-1">₹4000000</h4>
-              <p class="text-lightptext text-sm">Last updated: <span>4 Aug</span></p>
+              <h4 class="text-xl font-semibold my-1">₹ 0.0</h4>
+              <p class="text-lightptext text-sm">Last updated: <span class="refreshDate">4 Aug</span></p>
             </div>
 
             <div class=" border-r border-lightborder w-[22%]">
               <div class="flex gap-2">
                 <img class="w-5" src="/images/rupee.png" alt="">
-                <h4 class="text-lightptext text-sm">Total Loss</h4>
+                <h4 class="text-danger text-sm">Total Loss</h4>
               </div>
   
-              <h4 class="text-xl font-semibold my-1">₹4000000</h4>
-              <p class="text-lightptext text-sm">Last updated: <span>4 Aug</span></p>
+              <h4 class="text-xl font-semibold my-1">₹ 0.0</h4>
+              <p class="text-lightptext text-sm">Last updated: <span class="refreshDate">4 Aug</span></p>
             </div>
 
             <div class=" border-r border-lightborder w-[22%]">
@@ -43,18 +43,18 @@
                 <h4 class="text-lightptext text-sm">Last Month Saved</h4>
               </div>
   
-              <h4 class="text-xl font-semibold my-1">₹4000000</h4>
-              <p class="text-lightptext text-sm">Last updated: <span>4 Aug</span></p>
+              <h4 class="text-xl font-semibold my-1">₹ 0.0</h4>
+              <p class="text-lightptext text-sm">Last updated: <span class="refreshDate">4 Aug</span></p>
             </div>
 
             <div class="w-[22%]">
               <div class="flex gap-2">
                 <img class="w-5" src="/images/rupee.png" alt="">
-                <h4 class="text-lightptext text-sm">Last Month's Loss</h4>
+                <h4 class="text-danger text-sm">Last Month's Loss</h4>
               </div>
   
-              <h4 class="text-xl font-semibold my-1">₹4000000</h4>
-              <p class="text-lightptext text-sm">Last updated: <span>4 Aug</span></p>
+              <h4 class="text-xl font-semibold my-1">₹ 0.0</h4>
+              <p class="text-lightptext text-sm">Last updated: <span class="refreshDate">4 Aug</span></p>
             </div>
           </div>
         </div>
@@ -140,6 +140,9 @@
                     </div>
                     <div data-th-if="${bill.status == 'partially'}">
                       <td class="status px-6 py-4 text-danger">Partially-paid</td>
+                    </div>
+                    <div data-th-if="${bill.status == ''}">
+                      <td class="status px-6 py-4 text-danger">Untracked</td>
                     </div>
                     <td class=" duedate px-6 py-4 text-danger" data-th-text="${bill.dueDate}">
                       $2999
@@ -248,9 +251,10 @@
       </div>
     </div>
 
+    <div id="loader" class="absolute w-full h-screen top-[0%] overflow-y-hidden"></div>
     <div data-th-replace="~{user/modal/billpreviewmodal :: billpreview}"></div>
-
     <script type="module" src="/js/bills.js"></script>
+    <script src="/js/loader.js"></script>
     <script  src="/js/bill2.js"></script>
   </div>
 </body>

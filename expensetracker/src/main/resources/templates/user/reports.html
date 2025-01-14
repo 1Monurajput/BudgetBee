@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" data-th-replace="~{user/userbase :: userparent(~{::#content},~{::title})}">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="content" class="relative">
+        <div>
+            <div
+                class="flex gap-3 flex-col justify-evenly items-center border-2 border-dotted border-lightborder p-4 rounded-lg">
+                <div class="flex gap-2 justify-evenly w-full">
+                    <div class="p-4 border-2 border-lightbtn rounded-lg">
+                        <canvas id="budgetToCurrentBudget" class="functional-chart cursor-pointer" width="320"
+                            height="320"></canvas>
+                        <h4 class="text-center text-xs text-gray-500">Budget Analysis</h4>
+
+                        <div class="non-functional-chart relative">
+                            <canvas class="non-functional cursor-pointer" width="320" height="320"></canvas>
+                            <h4 class="text-[160px] leading-none text-lightborder absolute top-[24%] left-[40%]">
+                                ?
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="p-4 border-2 border-lightbtn rounded-lg">
+                        <canvas id="budgetToGoal" class="functional-chart cursor-pointer" width="320"
+                            height="320"></canvas>
+                        <h4 class="text-center text-xs text-gray-500">
+                            Budget vs Goal Analysis
+                        </h4>
+
+                        <div class="non-functional-chart relative">
+                            <canvas class="non-functional cursor-pointer" width="320" height="320"></canvas>
+                            <h4 class="text-[160px] leading-none text-lightborder absolute top-[24%] left-[40%]">
+                                ?
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex gap-3 justify-evenly border-2 border-dotted border-lightborder p-4 mt-4 rounded-lg">
+                <div class="functional-chart p-4 border-2 border-lightbtn rounded-lg">
+                    <canvas id="amountStatus" class="cursor-pointer" width="600" height="320"></canvas>
+                    <h4 class="text-center text-xs text-gray-500">
+                        Bills Amount Analysis
+                    </h4>
+                </div>
+                <div class="non-functional-chart relative p-4 border-2 border-lightbtn rounded-lg">
+                    <canvas class="non-functional cursor-pointer" width="320" height="320"></canvas>
+                    <h4 class="text-[160px] leading-none text-lightborder absolute top-[24%] left-[40%]">
+                        ?
+                    </h4>
+                </div>
+            </div>
+
+            <div class="flex gap-3 justify-evenly border-2 border-dotted border-lightborder p-4 rounded-lg my-4">
+                <div class="p-4 border-2 border-lightbtn rounded-lg">
+                    <div class="functional-chart">
+                        <canvas id="catChart" class="cursor-pointer" width="320" height="320"></canvas>
+                        <h4 class="text-center text-lightptext text-xs">
+                            Bill Categories
+                        </h4>
+                    </div>
+                    <div class="non-functional-chart relative">
+                        <canvas class="non-functional cursor-pointer" width="320" height="320"></canvas>
+                        <h4 class="text-[160px] leading-none text-lightborder absolute top-[24%] left-[40%]">
+                            ?
+                        </h4>
+                    </div>
+                </div>
+
+                <div class="p-4 border-2 border-lightbtn rounded-lg">
+                    <canvas id="billStatusChart" class="functional-chart cursor-pointer" width="320"
+                        height="320"></canvas>
+                        <h4 class="text-center text-xs text-gray-500">
+                            Bills Status Analysis
+                        </h4>
+
+                    <div class="non-functional-chart relative">
+                        <canvas class="non-functional cursor-pointer" width="320" height="320"></canvas>
+                        <h4 class="text-[160px] leading-none text-lightborder absolute top-[24%] left-[40%]">
+                            ?
+                        </h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex gap-3 justify-evenly border-2 border-dotted border-lightborder p-4 mt-4 rounded-lg">
+                <div class="p-4 border-2 border-lightbtn rounded-lg">
+                    <canvas id="catAmount" class="functional-chart cursor-pointer" width="600" height="320"></canvas>
+
+                    <div class="non-functional-chart relative">
+                        <canvas class="non-functional cursor-pointer" width="320" height="320"></canvas>
+                        <h4 class="text-[160px] leading-none text-lightborder absolute top-[24%] left-[40%]">
+                            ?
+                        </h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-full flex justify-end">
+                <a href="/user/allreports" class="bg-lightextra hover:bg-lightextraHover px-5 py-2 text-base text-white rounded-lg mt-6">
+                    View all
+                </a>
+            </div>
+        </div>
+
+        <div id="loader" class="absolute w-full h-screen top-[0%] overflow-y-hidden"></div>
+        <script src="/js/loader.js"></script>
+        <script type="module" src="/js/chart.js"></script>
+    </div>
+</body>
+
+</html>

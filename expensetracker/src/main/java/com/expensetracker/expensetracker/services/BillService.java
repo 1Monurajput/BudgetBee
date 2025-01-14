@@ -16,4 +16,6 @@ public interface BillService {
 
     void updateBill(Bills bill);
 
+    List<Bills> findByMonthAndYearAndUser(String month,String year);
+
 }

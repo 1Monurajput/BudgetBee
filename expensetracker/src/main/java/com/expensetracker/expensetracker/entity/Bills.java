@@ -1,9 +1,11 @@
 package com.expensetracker.expensetracker.entity;
 
+
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
@@ -37,10 +39,19 @@ public class Bills {
     private String billerPhone;
     private String time;
     private String billAttachement;
+    private String month;
+    private String year;
+    @Column(nullable = false,updatable = false)
+    private LocalDateTime timeStamp;
+
 
 
     @ManyToOne
     @JsonIgnore
     private Users user;
 
+
+    @ManyToOne
+    @JsonIgnore
+    private Budget budget;
 }

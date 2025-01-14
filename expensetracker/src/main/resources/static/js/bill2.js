@@ -1,5 +1,18 @@
 console.log("hello this is bill 2");
 let dataArray = [];
+refreshDate();
+
+function refreshDate(){
+  var eleRefreshDate = document.querySelectorAll(".refreshDate");
+  eleRefreshDate.forEach((ele) =>{
+    
+    var monthArray=["Jan","Feb","March","April","May","June","July","Aug","Sep","Oct","Nov","Dec"];
+    var date = new Date().getDate();
+    var month = monthArray[new Date().getMonth()];
+    ele.innerHTML= date + " " +  month;
+  })
+}
+
 fetchData();
 // filter button activation styling
 const filterBtn = document.querySelectorAll(".filter-btn");
@@ -231,6 +244,7 @@ function searchBill() {
   tableBody.innerHTML = "";
 
   filteredArray.forEach((bill) => {
+    showLoader();
     var newBillStatus = null;
     var textColor = null;
     if(bill.status == 'paid'){
@@ -280,6 +294,7 @@ function searchBill() {
     `;
 
     tableBody.appendChild(row);
+    hideLoader();
   });
 
   }
@@ -306,8 +321,14 @@ function searchBill() {
 
 // to fetch data from database
 async function fetchData() {
+  showLoader();
+
+  var year = new Date().getFullYear();
+  var monthArray =["jan","feb","march","april","may","june","july","aug","sep","oct","nov","december"];
+  var month = monthArray[new Date().getMonth()];
+  console.log(month);
   try {
-    const response = await fetch(`/api/bills/data`, {
+    const response = await fetch(`/api/monthly_bill?month=${month}&year=${year}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -322,4 +343,6 @@ async function fetchData() {
   } catch (error) {
     console.log("Error: " + error);
   }
+
+  hideLoader();
 }

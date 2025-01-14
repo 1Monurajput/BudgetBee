@@ -60,6 +60,13 @@ public class Users implements UserDetails {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER,orphanRemoval = true)
     private List<Bills> bills = new ArrayList<>();
 
+
+    @OneToMany(mappedBy = "user",cascade= CascadeType.ALL, fetch = FetchType.LAZY,orphanRemoval=true)
+    private List<Budget> budget = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<YearlyBudget> yearlyBudget = new ArrayList<>();
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" data-th-replace="~{base :: parent(~{:: #content},~{:: title})}">
+
+<head>
+    <title>All reports</title>
+</head>
+
+<body>
+    <div id="content" class="relative">
+        <div class="w-full p-2 my-4">
+            <div>
+                <div class="border-2 border-dotted border-lightborder p-4 py-3 flex justify-between rounded-lg">
+                    <h4 class="text-center text-2xl font-normal ml-[43%]">Your Reports</h4>
+                    <div class="flex justify-end gap-2">
+                        <select name="drop" id="monthdrop" class="rounded-lg"></select>
+                        <select name="yeardrop" id="yeardrop" class="rounded-lg"></select>
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="my-4 flex gap-3 flex-col justify-evenly items-center border-2 border-dotted border-lightborder p-4 rounded-lg">
+                <div class="flex gap-2 justify-evenly w-full">
+                    <div class="p-4 border-2 border-lightbtn rounded-lg">
+                        <canvas id="budgetToCurrentBudget" class="functional-chart cursor-pointer" width="320"
+                            height="320"></canvas>
+                        <h4 class="text-center text-xs text-gray-500">Budget Analysis</h4>
+
+                        <div class="non-functional-chart relative">
+                            <canvas class="non-functional cursor-pointer" width="320" height="320"></canvas>
+                            <h4 class="text-[160px] leading-none text-lightborder absolute top-[24%] left-[40%]">
+                                ?
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="p-4 border-2 border-lightbtn rounded-lg">
+                        <canvas id="budgetToGoal" class="functional-chart cursor-pointer" width="320"
+                            height="320"></canvas>
+                        <h4 class="text-center text-xs text-gray-500">
+                            Budget vs Goal Analysis
+                        </h4>
+
+                        <div class="non-functional-chart relative">
+                            <canvas class="non-functional cursor-pointer" width="320" height="320"></canvas>
+                            <h4 class="text-[160px] leading-none text-lightborder absolute top-[24%] left-[40%]">
+                                ?
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="mb-4 flex gap-3 flex-col justify-evenly items-center border-2 border-dotted border-lightborder rounded-lg p-4">
+                <div class="border-2 border-lightbtn rounded-lg p-4">
+                    <div class="w-full flex justify-center gap-1">
+                        <h4 class="text-center text-2xl">Budget Status</h4>
+                        <div id="live" class="h-[10px] w-[10px] rounded-full bg-red-600 mt-1 cursor-pointer">
+                            <label id="liveLabel" class="hidden text-[8px] ml-4 text-lightptext border rounded-lg p-1 bg-white w-max" for="">Live Budget</label>
+                        </div>
+                    </div>
+                    <div class="w-full flex justify-end gap-1 mt-2 mb-1 ">
+                        <div id="month" class="bg-white p-2 py-0.5 border border-gray-500 rounded-lg">
+                            
+                        </div>
+                        <div id="year" class="bg-white p-2 py-0.5 border border-gray-500 rounded-lg">
+                            
+                        </div>
+                    </div>
+
+                    <div class="allreports flex justify-center items-stretch mt-4">
+                        <div class="info">
+                            <h4 class="px-6 py-1 rounded-l-lg">Income : </h4>
+                            <h4 class="px-6 py-1 rounded-l-lg">Budget : </h4>
+                            <h4 class="px-6 py-1 rounded-l-lg">Goal : </h4>
+                            <h4 class="px-6 py-1 rounded-l-lg">Goal Reached :</h4>
+                            <h4 class="px-6 py-1 rounded-l-lg">Recorded Expense :</h4>
+                            <h4 class="px-6 py-1 rounded-l-lg">Unrecorded Expense :</h4>
+                            <h4 class="px-6 py-1 rounded-l-lg">Total Expense:</h4>
+                        </div>
+                        <div class="data">
+                            <h4 id="income" class="px-6 pl-12 py-1 rounded-r-lg"> </h4>
+                            <h4 id="budget" class="px-6 pl-12 py-1 rounded-r-lg"> </h4>
+                            <h4 id="goal" class="px-6 pl-12 py-1 rounded-r-lg"></h4>
+                            <h4 id="reach" class="px-6 pl-12 py-1 rounded-r-lg"></h4>
+                            <h4 id="recorded" class="px-6 pl-12 py-1 rounded-r-lg"></h4>
+                            <h4 id="unrecorded" class="px-6 pl-12 py-1 rounded-r-lg"></h4>
+                            <h4 id="total" class="px-6 pl-12 py-1 rounded-r-lg"></h4>
+                        </div>
+                    </div>
+                    <p class="text-[10px] text-lightptext mt-4">!Some data of live month will be calculated at the end of month.</p>
+                </div>
+            </div>
+
+            <div class="flex gap-3 justify-evenly border-2 border-dotted border-lightborder p-4 rounded-lg my-4">
+                <div class="p-4 border-2 border-lightbtn rounded-lg">
+                    <div class="functional-chart">
+                        <canvas id="catChart" class="cursor-pointer" width="320" height="320"></canvas>
+                        <h4 class="text-center text-lightptext text-xs">
+                            Bill Categories
+                        </h4>
+                    </div>
+                    <div class="non-functional-chart relative">
+                        <canvas class="non-functional cursor-pointer" width="320" height="320"></canvas>
+                        <h4 class="text-[160px] leading-none text-lightborder absolute top-[24%] left-[40%]">
+                            ?
+                        </h4>
+                    </div>
+                </div>
+
+                <div class="p-4 border-2 border-lightbtn rounded-lg">
+                    <canvas id="billStatusChart" class="functional-chart cursor-pointer" width="320"
+                        height="320"></canvas>
+                        <h4 class="text-center text-xs text-gray-500">
+                            Bills Status Analysis
+                        </h4>
+
+                    <div class="non-functional-chart relative">
+                        <canvas class="non-functional cursor-pointer" width="320" height="320"></canvas>
+                        <h4 class="text-[160px] leading-none text-lightborder absolute top-[24%] left-[40%]">
+                            ?
+                        </h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex gap-3 justify-evenly border-2 border-dotted border-lightborder p-4 mt-4 rounded-lg">
+                <div class="functional-chart p-4 border-2 border-lightbtn rounded-lg">
+                    <canvas id="amountStatus" class="cursor-pointer" width="600" height="320"></canvas>
+                    <h4 class="text-center text-xs text-gray-500">
+                        Bills Amount Analysis
+                    </h4>
+                </div>
+                <div class="non-functional-chart relative p-4 border-2 border-lightbtn rounded-lg">
+                    <canvas class="non-functional cursor-pointer" width="320" height="320"></canvas>
+                    <h4 class="text-[160px] leading-none text-lightborder absolute top-[24%] left-[40%]">
+                        ?
+                    </h4>
+                </div>
+            </div>
+
+            <div class="flex gap-3 justify-evenly border-2 border-dotted border-lightborder p-4 mt-4 rounded-lg">
+                <div class="p-4 border-2 border-lightbtn rounded-lg">
+                    <canvas id="catAmount" class="functional-chart cursor-pointer" width="600" height="320"></canvas>
+
+                    <div class="non-functional-chart relative">
+                        <canvas class="non-functional cursor-pointer" width="320" height="320"></canvas>
+                        <h4 class="text-[160px] leading-none text-lightborder absolute top-[24%] left-[40%]">
+                            ?
+                        </h4>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <div id="loader" class="absolute w-full h-screen top-[0%] overflow-y-hidden"></div>
+        <script src="/js/loader.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="/js/allreport.js"></script>
+        <script src="/js/chart2.js"></script>
+        <!-- //scripts -->
+    </div>
+</body>
+
+</html>

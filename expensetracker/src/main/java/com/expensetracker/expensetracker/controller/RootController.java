@@ -1,10 +1,10 @@
 package com.expensetracker.expensetracker.controller;
 
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.expensetracker.expensetracker.entity.Users;
 import com.expensetracker.expensetracker.services.UserServices;
+
 
 import jakarta.servlet.http.HttpSession;
 
@@ -57,4 +58,7 @@ public class RootController {
 
         System.out.println(session.getAttribute("email"));
     }
+
+
+
 }

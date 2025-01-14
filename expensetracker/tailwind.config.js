@@ -12,7 +12,7 @@ export default {
         lightborder: '#a3a3a2',
         lightextra: '#229799',
         lightextraHover: 'rgb(25,137,142)',
-        lightpurple:'#bf00fe',
+        lightpurple:'#bf00fe',  
         lightpurpleHover: 'rgb(165,6,277)',
         emtext: '#2db84c',
         lightptext: 'rgb(100 116 139)',

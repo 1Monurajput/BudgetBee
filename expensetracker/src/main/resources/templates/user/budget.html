@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" data-th-replace="~{user/userbase :: userparent(~{::#content},~{::title})}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="content" class="relative">
+        <div>
+            <div id="budgetBox" class=" hidden">
+                <div
+                    class="flex gap-3 justify-evenly border-2 border-dotted border-lightborder p-4 rounded-lg mb-4 flex-col">
+                    <h4 class="text-center">Cheers to a brand-new month! Stay focused, plan wisely, and make every expense
+                        count.</h4>
+                    <h4 class="text-right">~BudgetBee</h4>
+                </div>
+    
+                <div class="flex gap-3 justify-center border-2 border-dotted border-lightborder p-4 rounded-lg flex-col">
+                    <div>
+                        <h4 class="shadow-inset-red py-0.5 px-0.5 w-full">!Set your this month's budget to track effectively.</h4>
+                    </div>
+                    <div class="flex justify-evenly items-center gap-2">
+                        <div>
+                            <img class="w-[25rem]" src="/images/budget.png" alt="">
+                        </div>
+                        <div class="border-2 border-lightbtn rounded-lg w-full max-w-[500px] self-center" style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
+    
+    
+                            <form action="/user/setbudget" method="post" class="w-full p-4 py-5"
+                            data-th-object="${budgetForm}" onsubmit="return checkForm()">
+        
+                                <div class="grid md:grid-cols-2 md:gap-6">
+                                    <div class="relative z-0 w-full mb-5 group">
+                                        <input
+                                        data-th-field="*{income}"
+                                         type="number" name="income" id="income"
+                                            class="block py-2.5 px-0 w-full text-base text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                                            placeholder=" " required />
+                                        <label for="income"
+                                            class="peer-focus:font-medium absolute text-base text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Income</label>
+                                    </div>
+                                    <div class="relative z-0 w-full mb-5 group">
+                                        <input type="number" name="budget" id="budget"
+                                        data-th-field="*{budget}"
+                                            class="block py-2.5 px-0 w-full text-base text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" value=""
+                                            placeholder=" " required />
+                                        <label for="budget"
+                                            class="peer-focus:font-medium absolute text-base text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Budget</label>
+                                    </div>
+                                </div>
+        
+                                <div class="grid md:grid-cols-2 md:gap-6">
+                                    <div class="relative z-0 w-full mb-5 group">
+                                        <input type="number" name="goal" data-th-field="*{goal}" id="goal" class="block py-2.5 px-0 w-full text-base text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
+                                        <label for="goal" class="peer-focus:font-medium absolute text-base text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Goal</label>
+                                    </div>
+                                    <div class="grid md:grid-cols-2 md:gap-6">
+                                        <div class="relative z-0 w-full mb-5 group">
+                                            <input type="text" data-th-field="*{month}" name="month" id="month" class="block py-2.5 px-0 w-full text-base text-gray-500 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " readonly />
+                                            <label for="month" class="peer-focus:font-medium absolute text-base text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Month</label>
+                                        </div>
+                                        <div class="relative z-0 w-full mb-5 group">
+                                            <input data-th-field="*{year}" type="number" name="year" id="year" class="block py-2.5 px-0 w-full text-base text-gray-500 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " readonly />
+                                            <label for="year" class="peer-focus:font-medium absolute text-base text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Year</label>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="relative z-0 w-full mb-5 group">
+                                    <input data-th-field="*{remainder}" type="text" name="remainder" id="remainder" class="block py-2.5 px-0 w-full text-base text-gray-500 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                                    <label for="remainder" class="peer-focus:font-medium absolute text-base text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Any remainder</label>
+                                </div>
+                                <div id="budgetFormAlert" class="hidden relative z-0 w-full mb-5 group shadow-inset-red border border-danger px-2 rounded-lg py-1">
+                                    <h4 class="text-danger text-sm">Make sure to fill in the income, budget, and goal.</h4>
+                                </div>
+                                <div id="budgetFormAlert2" class="hidden relative z-0 w-full mb-5 group shadow-inset-red border border-danger px-2 rounded-lg py-1">
+                                    <h4 class="text-danger text-sm">Your budget should be less than or equal to your income and greater than your goal.</h4>
+                                </div>
+                                <div class="flex justify-center" >
+                                    <button type="submit"
+                                    class="text-white !bg-lightbtn hover:!bg-lightbtnhover focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-base w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Set Budget</button>
+                                </div>
+                            </form>
+        
+                        </div>
+                    </div>
+    
+                </div>
+    
+            </div>
+
+            <div id="box" class="hidden">
+                <div class="border-2 border-dotted border-lightborder p-4 py-3 flex justify-between rounded-lg">
+                    <h4 class="text-center text-2xl font-normal ml-[35%]">Yearly Budget Status</h4>
+                    <div class="flex justify-end gap-2">
+                        <select name="yeardrop" id="yeardrop" class="rounded-lg"></select>
+                    </div>
+                </div>
+
+                <div id="yearDetail" class="w-full">
+                    <div class="flex justify-center mt-4 border-2 border-dotted border-lightborder p-4 py-3 rounded-lg">
+                        <div class="functional-chart p-4 border-2 border-lightbtn rounded-lg h-[350px] w-[640px] pb-8">
+                            <canvas id="amountStatus" class="cursor-pointer" width="600px" height="320px"></canvas>
+                            <h4 class="text-center text-xs text-gray-500 mb-4">
+                                yearly Amount Status
+                            </h4>
+                        </div>
+                    </div>
+    
+                    <div class="flex justify-center mt-4 border-2 border-dotted border-lightborder p-4 py-3 rounded-lg">
+                        <div class="functional-chart p-4 border-2 border-lightbtn rounded-lg">
+                            <canvas id="goalData" class="cursor-pointer" width="600px" height="320px"></canvas>
+                            <h4 class="text-center text-xs text-gray-500">
+                                yearly Goal vs Loss
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="present" class="relative">
+                    <div class=" mt-4 border-2 border-dotted border-lightborder p-4 py-3 flex rounded-lg h-[300px] flex-col">
+                        <h4 class="self-start shadow-inset-red w-full rounded-md px-4">Data of this year is still processing...</h4>
+                        <div class="flex w-full justify-center h-full items-center">
+                            <img src="/images/bee.gif" class="w-40 h-40" alt="">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div id="loader" class="absolute w-full h-screen top-[0%] overflow-y-hidden"></div>
+        <script src="/js/loader.js"></script>
+        <script src="/js/budget.js"></script>
+        
+    </div>
+</body>
+
+</html>

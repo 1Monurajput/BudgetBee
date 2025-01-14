@@ -30,6 +30,8 @@ public class BillsServiceImpl implements BillService {
 
     Users user = (Users) session.getAttribute("user");
     bill.setUser(user);
+
+    bill.setTimeStamp(LocalDateTime.now());
     return billRepo.save(bill);
   }
 
@@ -53,6 +55,12 @@ public class BillsServiceImpl implements BillService {
   @Override
   public void updateBill(Bills bill) {
     billRepo.save(bill);
+  }
+
+  @Override
+  public List<Bills> findByMonthAndYearAndUser(String month, String year) {
+    Users user = (Users) session.getAttribute("user");
+    return billRepo.findByMonthAndYearAndUser(month,year,user);
   }
 
 }
