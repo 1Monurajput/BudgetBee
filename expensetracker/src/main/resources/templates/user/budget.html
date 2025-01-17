@@ -10,7 +10,8 @@
 <body>
     <div id="content" class="relative">
         <div>
-            <div id="budgetBox" class=" hidden">
+            <div id="budgetBox" class="hidden">
+                
                 <div
                     class="flex gap-3 justify-evenly border-2 border-dotted border-lightborder p-4 rounded-lg mb-4 flex-col">
                     <h4 class="text-center">Cheers to a brand-new month! Stay focused, plan wisely, and make every expense
@@ -22,7 +23,7 @@
                     <div>
                         <h4 class="shadow-inset-red py-0.5 px-0.5 w-full">!Set your this month's budget to track effectively.</h4>
                     </div>
-                    <div class="flex justify-evenly items-center gap-2">
+                    <div class="flex justify-evenly items-center flex-col md:flex-row gap-4">
                         <div>
                             <img class="w-[25rem]" src="/images/budget.png" alt="">
                         </div>
@@ -93,16 +94,16 @@
             </div>
 
             <div id="box" class="hidden">
-                <div class="border-2 border-dotted border-lightborder p-4 py-3 flex justify-between rounded-lg">
-                    <h4 class="text-center text-2xl font-normal ml-[35%]">Yearly Budget Status</h4>
+                <div class="border-2 border-dotted border-lightborder p-4 py-3 flex justify-between rounded-lg flex-col md:flex-row  gap-2">
+                    <h4 class="text-center text-2xl font-normal md:ml-[35%]">Yearly Budget Status</h4>
                     <div class="flex justify-end gap-2">
                         <select name="yeardrop" id="yeardrop" class="rounded-lg"></select>
                     </div>
                 </div>
 
                 <div id="yearDetail" class="w-full">
-                    <div class="flex justify-center mt-4 border-2 border-dotted border-lightborder p-4 py-3 rounded-lg">
-                        <div class="functional-chart p-4 border-2 border-lightbtn rounded-lg h-[350px] w-[640px] pb-8">
+                    <div class="flex justify-center mt-4 border-2 border-dotted border-lightborder p-4 py-4 rounded-lg">
+                        <div class="functional-chart p-4 border-2 border-lightbtn rounded-lg md:h-[350px] md:w-[640px] pb-8 w-[90%]">
                             <canvas id="amountStatus" class="cursor-pointer" width="600px" height="320px"></canvas>
                             <h4 class="text-center text-xs text-gray-500 mb-4">
                                 yearly Amount Status
@@ -111,7 +112,7 @@
                     </div>
     
                     <div class="flex justify-center mt-4 border-2 border-dotted border-lightborder p-4 py-3 rounded-lg">
-                        <div class="functional-chart p-4 border-2 border-lightbtn rounded-lg">
+                        <div class="functional-chart p-4 border-2 border-lightbtn rounded-lg md:h-[350px] md:w-[640px] pb-8 w-[90%]">
                             <canvas id="goalData" class="cursor-pointer" width="600px" height="320px"></canvas>
                             <h4 class="text-center text-xs text-gray-500">
                                 yearly Goal vs Loss

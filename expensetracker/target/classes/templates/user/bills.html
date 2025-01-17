@@ -14,8 +14,8 @@
         </h4>
       </div>
 
-      <div class=" flex justify-center p-6">
-        <div class="flex justify-center items-center w-full">
+      <div class=" flex justify-center p-4 py-6">
+        <div class="justify-center items-center w-full hidden md:flex">
           <div class="flex justify-center gap-8 items-center border border-lightborder rounded-lg w-full p-6 bg-gray-50">
             <div class=" border-r border-lightborder w-[22%]">
               <div class="flex gap-2">
@@ -65,8 +65,8 @@
           <!-- // table -->
 
           <!-- button and filters -->
-           <div class="w-full bg-gray-50 border-b border-lightborder p-4 flex justify-between items-center ">
-            <div class="flex justify-start items-center gap-1.5">
+           <div class="w-full bg-gray-50 border-b border-lightborder p-4 flex justify-between items-center flex-col sm:flex-row gap-3 ">
+            <div class="flex justify-start items-center md:gap-1.5 gap-2 flex-wrap">
               <button id="all-btn" class="active-btn filter-btn bg-gray-50 px-4 py-0.5 rounded-lg border border-lightborder">
                 All
               </button>
@@ -80,7 +80,7 @@
                 Partially Paid
               </button>
             </div>
-            <div class="flex gap-1.5">
+            <div class="flex md:gap-1.5 gap-2 flex-wrap justify-end">
               <div>
                 <input id="searchBar" type="text" class="rounded-lg px-4 w-60 text-sm" placeholder="Search your bill..." onkeyup="searchBill()">
               </div>

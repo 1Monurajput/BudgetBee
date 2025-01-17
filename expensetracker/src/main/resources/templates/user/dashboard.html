@@ -13,10 +13,10 @@
             <div>
                 <div
                     class="flex gap-3 flex-col justify-evenly items-center border-2 border-dotted border-lightborder p-4 rounded-lg">
-                    <div class="flex gap-2 justify-evenly w-full">
-                        <div class="p-4 border-2 border-lightbtn rounded-lg">
-                            <canvas id="budgetToCurrentBudget" class="functional-chart cursor-pointer" width="320"
-                                height="320"></canvas>
+                    <div class="flex gap-4 items-center justify-evenly w-full flex-col md:flex-row">
+                        <div class="p-4 w-[80%] border-2 border-lightbtn rounded-lg md:w-[350px] md:h-[370px]">
+                            <canvas id="budgetToCurrentBudget" class="functional-chart cursor-pointer" width="320px"
+                                height="320px"></canvas>
                             <h4 class="text-center text-xs text-gray-500">
                                 Budget Analysis
                             </h4>
@@ -28,7 +28,7 @@
                                 </h4>
                             </div>
                         </div>
-                        <div class="p-4 border-2 border-lightbtn rounded-lg">
+                        <div class="p-4 w-[80%] border-2 border-lightbtn rounded-lg md:w-[350px] md:h-[370px]">
                             <canvas id="budgetToGoal" class="functional-chart cursor-pointer" width="320"
                                 height="320"></canvas>
                             <h4 class="text-center text-xs text-gray-500">
@@ -43,14 +43,14 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex justify-around gap-4 items-center w-full">
-                        <div class="w-1/2 flex justify-center">
+                    <div class="flex justify-around gap-2 items-center w-full flex-col sm:flex-row">
+                        <div class="w-full sm:w-1/2 flex justify-center">
                             <h4
                                 class="text-center text-base w-max mt-2 text-white bg-emtext hover:bg-green-600 cursor-pointer px-5 py-2 rounded-lg">
                                 Total Budget : <span id="totalBudget"></span>
                             </h4>
                         </div>
-                        <div class="w-1/2 flex justify-center">
+                        <div class="w-full sm:w-1/2 flex justify-center">
                             <h4
                                 class="text-center text-base w-max mt-2 text-white bg-lightpurple hover:bg-lightpurpleHover cursor-pointer px-5 py-2 rounded-lg">
                                 Remaining Budget : <span id="currentBudget"></span>
@@ -58,25 +58,25 @@
                         </div>
                     </div>
                 </div>
-                <div class="flex gap-3 justify-center border-2 border-dotted border-lightborder mt-4 py-4 rounded-lg">
+                <div class="flex gap-2 p-4 flex-wrap justify-center border-2 border-dotted border-lightborder mt-4 py-4 rounded-lg items-center">
                     <button id="addBillButton" onclick="openAddBillModal()"
-                        class="text-white bg-lightbtn hover:bg-lightbtnhover focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-base px-5 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        class="text-white bg-lightbtn hover:bg-lightbtnhover focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-base px-5 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 w-max">
                         Add Bill
                     </button>
 
                     <a href="bills"
-                        class="text-white bg-lightextra hover:bg-lightextraHover focus:ring-4 focus:outline-none focus:ring-emerald-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        class="text-white bg-lightextra hover:bg-lightextraHover focus:ring-4 focus:outline-none focus:ring-emerald-300 font-medium rounded-lg text-sm sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 w-max">
                         View Bills
                     </a>
                     <button
-                        class="text-white bg-lightpurple hover:bg-lightpurpleHover focus:ring-4 focus:outline-none focus:ring-violet-300 font-medium rounded-lg text-base px-6 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 px-">
+                        class="text-white bg-lightpurple hover:bg-lightpurpleHover focus:ring-4 focus:outline-none focus:ring-violet-300 font-medium rounded-lg text-base px-6 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 w-max">
                         Track
                     </button>
                 </div>
             </div>
 
-            <div class="flex gap-3 justify-evenly border-2 border-dotted border-lightborder p-4 rounded-lg my-4">
-                <div class="p-4 border-2 border-lightbtn rounded-lg">
+            <div class="flex gap-3 justify-evenly border-2 border-dotted border-lightborder p-4 rounded-lg my-4 items-center w-full flex-col md:flex-row">
+                <div class="p-4 w-[80%] border-2 border-lightbtn rounded-lg md:w-[350px] md:h-[370px]">
                     <div class="functional-chart">
                         <canvas id="catChart" class="cursor-pointer" width="320" height="320"></canvas>
                         <h4 class="text-center text-lightptext text-xs">
@@ -91,7 +91,7 @@
                     </div>
                 </div>
 
-                <div class="p-4 border-2 border-lightbtn rounded-lg">
+                <div class="p-4 w-[80%] border-2 border-lightbtn rounded-lg md:w-[350px] md:h-[370px]">
                     <canvas id="billStatusChart" class="functional-chart cursor-pointer" width="320"
                         height="320"></canvas>
                     <h4 class="text-center text-xs text-gray-500">
@@ -117,8 +117,7 @@
                             </button>
                         </div>
                         <div class="flex gap-1.5">
-                            <select class="rounded-lg text-sm" name="" id="drop2">
-                            </select>
+                            <select class="rounded-lg text-sm" name="" id="drop2"></select>
                         </div>
                     </div>
 

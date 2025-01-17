@@ -12,8 +12,8 @@
         <div>
             <div
                 class="flex gap-3 flex-col justify-evenly items-center border-2 border-dotted border-lightborder p-4 rounded-lg">
-                <div class="flex gap-2 justify-evenly w-full">
-                    <div class="p-4 border-2 border-lightbtn rounded-lg">
+                <div class="flex gap-4 items-center justify-evenly  w-full flex-col md:flex-row">
+                    <div class="p-4 w-[80%] border-2 border-lightbtn rounded-lg md:w-[350px] md:h-[370px]">
                         <canvas id="budgetToCurrentBudget" class="functional-chart cursor-pointer" width="320"
                             height="320"></canvas>
                         <h4 class="text-center text-xs text-gray-500">Budget Analysis</h4>
@@ -25,7 +25,7 @@
                             </h4>
                         </div>
                     </div>
-                    <div class="p-4 border-2 border-lightbtn rounded-lg">
+                    <div class="p-4 w-[80%] border-2 border-lightbtn rounded-lg md:w-[350px] md:h-[370px]">
                         <canvas id="budgetToGoal" class="functional-chart cursor-pointer" width="320"
                             height="320"></canvas>
                         <h4 class="text-center text-xs text-gray-500">
@@ -43,13 +43,13 @@
             </div>
 
             <div class="flex gap-3 justify-evenly border-2 border-dotted border-lightborder p-4 mt-4 rounded-lg">
-                <div class="functional-chart p-4 border-2 border-lightbtn rounded-lg">
-                    <canvas id="amountStatus" class="cursor-pointer" width="600" height="320"></canvas>
+                <div class="p-4 border-2 border-lightbtn rounded-lg w-[90%] md:w-[640px] md:h-[350px]">
+                    <canvas id="amountStatus" class="cursor-pointer" width="600px" height="320px"></canvas>
                     <h4 class="text-center text-xs text-gray-500">
                         Bills Amount Analysis
                     </h4>
                 </div>
-                <div class="non-functional-chart relative p-4 border-2 border-lightbtn rounded-lg">
+                <div class="non-functional-chart relative p-4 border-2 border-lightbtn rounded-lg w-[80%] md:w-[350px] md:h-[370px]">
                     <canvas class="non-functional cursor-pointer" width="320" height="320"></canvas>
                     <h4 class="text-[160px] leading-none text-lightborder absolute top-[24%] left-[40%]">
                         ?
@@ -57,8 +57,8 @@
                 </div>
             </div>
 
-            <div class="flex gap-3 justify-evenly border-2 border-dotted border-lightborder p-4 rounded-lg my-4">
-                <div class="p-4 border-2 border-lightbtn rounded-lg">
+            <div class="flex flex-col md:flex-row gap-4 justify-evenly items-center  border-2 border-dotted border-lightborder p-4 rounded-lg my-4">
+                <div class="p-4 border-2 border-lightbtn rounded-lg md:w-[350px] md:h-[370px] w-[80%]">
                     <div class="functional-chart">
                         <canvas id="catChart" class="cursor-pointer" width="320" height="320"></canvas>
                         <h4 class="text-center text-lightptext text-xs">
@@ -73,7 +73,7 @@
                     </div>
                 </div>
 
-                <div class="p-4 border-2 border-lightbtn rounded-lg">
+                <div class="p-4 w-[80%] border-2 border-lightbtn rounded-lg md:w-[350px] md:h-[370px]">
                     <canvas id="billStatusChart" class="functional-chart cursor-pointer" width="320"
                         height="320"></canvas>
                         <h4 class="text-center text-xs text-gray-500">
@@ -90,8 +90,8 @@
             </div>
 
             <div class="flex gap-3 justify-evenly border-2 border-dotted border-lightborder p-4 mt-4 rounded-lg">
-                <div class="p-4 border-2 border-lightbtn rounded-lg">
-                    <canvas id="catAmount" class="functional-chart cursor-pointer" width="600" height="320"></canvas>
+                <div class="p-4 border-2 border-lightbtn rounded-lg w-[90%] md:w-[640px] md:h-[350px]">
+                    <canvas id="catAmount" class="functional-chart cursor-pointer" width="600px" height="320px"></canvas>
 
                     <div class="non-functional-chart relative">
                         <canvas class="non-functional cursor-pointer" width="320" height="320"></canvas>

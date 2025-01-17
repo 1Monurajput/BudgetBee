@@ -8,9 +8,9 @@
 <body>
     <div id="content" class="relative">
         <div class="w-full p-2 my-4">
-            <div>
-                <div class="border-2 border-dotted border-lightborder p-4 py-3 flex justify-between rounded-lg">
-                    <h4 class="text-center text-2xl font-normal ml-[43%]">Your Reports</h4>
+            <div class="w-full">
+                <div class="border-2 border-dotted border-lightborder p-4 py-3 flex flex-col md:flex-row justify-between rounded-lg gap-2">
+                    <h4 class="text-center text-2xl font-normal md:ml-[43%]">Your Reports</h4>
                     <div class="flex justify-end gap-2">
                         <select name="drop" id="monthdrop" class="rounded-lg"></select>
                         <select name="yeardrop" id="yeardrop" class="rounded-lg"></select>
@@ -18,10 +18,10 @@
                 </div>
             </div>
 
-            <div
+             <div
                 class="my-4 flex gap-3 flex-col justify-evenly items-center border-2 border-dotted border-lightborder p-4 rounded-lg">
-                <div class="flex gap-2 justify-evenly w-full">
-                    <div class="p-4 border-2 border-lightbtn rounded-lg">
+                <div class="flex justify-evenly w-full items-center flex-col md:flex-row gap-4">
+                    <div class="p-4 border-2 border-lightbtn rounded-lg w-[80%] md:w-[350px] md:h-[370px]">
                         <canvas id="budgetToCurrentBudget" class="functional-chart cursor-pointer" width="320"
                             height="320"></canvas>
                         <h4 class="text-center text-xs text-gray-500">Budget Analysis</h4>
@@ -33,7 +33,7 @@
                             </h4>
                         </div>
                     </div>
-                    <div class="p-4 border-2 border-lightbtn rounded-lg">
+                    <div class="p-4 border-2 border-lightbtn rounded-lg w-[80%] md:w-[350px] md:h-[370px]">
                         <canvas id="budgetToGoal" class="functional-chart cursor-pointer" width="320"
                             height="320"></canvas>
                         <h4 class="text-center text-xs text-gray-500">
@@ -70,30 +70,30 @@
 
                     <div class="allreports flex justify-center items-stretch mt-4">
                         <div class="info">
-                            <h4 class="px-6 py-1 rounded-l-lg">Income : </h4>
-                            <h4 class="px-6 py-1 rounded-l-lg">Budget : </h4>
-                            <h4 class="px-6 py-1 rounded-l-lg">Goal : </h4>
-                            <h4 class="px-6 py-1 rounded-l-lg">Goal Reached :</h4>
-                            <h4 class="px-6 py-1 rounded-l-lg">Recorded Expense :</h4>
-                            <h4 class="px-6 py-1 rounded-l-lg">Unrecorded Expense :</h4>
-                            <h4 class="px-6 py-1 rounded-l-lg">Total Expense:</h4>
+                            <h4 class=" sm:px-4 px-2 md:px-6 py-1 rounded-l-lg">Income : </h4>
+                            <h4 class=" sm:px-4 px-2 md:px-6 py-1 rounded-l-lg">Budget : </h4>
+                            <h4 class=" sm:px-4 px-2 md:px-6 py-1 rounded-l-lg">Goal : </h4>
+                            <h4 class=" sm:px-4 px-2 md:px-6 py-1 rounded-l-lg">Goal Reached :</h4>
+                            <h4 class=" sm:px-4 px-2 md:px-6 py-1 rounded-l-lg">Recorded Expense :</h4>
+                            <h4 class=" sm:px-4 px-2 md:px-6 py-1 rounded-l-lg">Unrecorded Expense :</h4>
+                            <h4 class=" sm:px-4 px-2 md:px-6 py-1 rounded-l-lg">Total Expense:</h4>
                         </div>
                         <div class="data">
-                            <h4 id="income" class="px-6 pl-12 py-1 rounded-r-lg"> </h4>
-                            <h4 id="budget" class="px-6 pl-12 py-1 rounded-r-lg"> </h4>
-                            <h4 id="goal" class="px-6 pl-12 py-1 rounded-r-lg"></h4>
-                            <h4 id="reach" class="px-6 pl-12 py-1 rounded-r-lg"></h4>
-                            <h4 id="recorded" class="px-6 pl-12 py-1 rounded-r-lg"></h4>
-                            <h4 id="unrecorded" class="px-6 pl-12 py-1 rounded-r-lg"></h4>
-                            <h4 id="total" class="px-6 pl-12 py-1 rounded-r-lg"></h4>
+                            <h4 id="income" class=" sm:px-4 px-2 md:px-6 pl-12 py-1 rounded-r-lg">0.0 </h4>
+                            <h4 id="budget" class=" sm:px-4 px-2 md:px-6 pl-12 py-1 rounded-r-lg">0.0 </h4>
+                            <h4 id="goal" class=" sm:px-4 px-2 md:px-6 pl-12 py-1 rounded-r-lg">0.0</h4>
+                            <h4 id="reach" class=" sm:px-4 px-2 md:px-6 pl-12 py-1 rounded-r-lg">No Record</h4>
+                            <h4 id="recorded" class=" sm:px-4 px-2 md:px-6 pl-12 py-1 rounded-r-lg">0.0</h4>
+                            <h4 id="unrecorded" class=" sm:px-4 px-2 md:px-6 pl-12 py-1 rounded-r-lg">0.0</h4>
+                            <h4 id="total" class=" sm:px-4 px-2 md:px-6 pl-12 py-1 rounded-r-lg">0.0</h4>
                         </div>
                     </div>
                     <p class="text-[10px] text-lightptext mt-4">!Some data of live month will be calculated at the end of month.</p>
                 </div>
             </div>
 
-            <div class="flex gap-3 justify-evenly border-2 border-dotted border-lightborder p-4 rounded-lg my-4">
-                <div class="p-4 border-2 border-lightbtn rounded-lg">
+            <div class="flex gap-4 justify-evenly border-2 border-dotted border-lightborder p-4 rounded-lg my-4 flex-col md:flex-row items-center">
+                <div class="p-4 border-2 border-lightbtn rounded-lg w-[80%] md:w-[350px] md:h-[370px]">
                     <div class="functional-chart">
                         <canvas id="catChart" class="cursor-pointer" width="320" height="320"></canvas>
                         <h4 class="text-center text-lightptext text-xs">
@@ -108,7 +108,7 @@
                     </div>
                 </div>
 
-                <div class="p-4 border-2 border-lightbtn rounded-lg">
+                <div class="p-4 border-2 border-lightbtn rounded-lg w-[80%] md:w-[350px] md:h-[370px]">
                     <canvas id="billStatusChart" class="functional-chart cursor-pointer" width="320"
                         height="320"></canvas>
                         <h4 class="text-center text-xs text-gray-500">
@@ -125,7 +125,7 @@
             </div>
 
             <div class="flex gap-3 justify-evenly border-2 border-dotted border-lightborder p-4 mt-4 rounded-lg">
-                <div class="functional-chart p-4 border-2 border-lightbtn rounded-lg">
+                <div class="functional-chart p-4 border-2 border-lightbtn rounded-lg w-[90%] md:h-[350px] md:w-[640px]">
                     <canvas id="amountStatus" class="cursor-pointer" width="600" height="320"></canvas>
                     <h4 class="text-center text-xs text-gray-500">
                         Bills Amount Analysis
@@ -140,8 +140,8 @@
             </div>
 
             <div class="flex gap-3 justify-evenly border-2 border-dotted border-lightborder p-4 mt-4 rounded-lg">
-                <div class="p-4 border-2 border-lightbtn rounded-lg">
-                    <canvas id="catAmount" class="functional-chart cursor-pointer" width="600" height="320"></canvas>
+                <div class="p-4 border-2 border-lightbtn rounded-lg w-[90%] md:h-[350px] md:w-[640px]">
+                    <canvas id="catAmount" class="functional-chart cursor-pointer" width="600px" height="320px"></canvas>
 
                     <div class="non-functional-chart relative">
                         <canvas class="non-functional cursor-pointer" width="320" height="320"></canvas>
@@ -150,7 +150,7 @@
                         </h4>
                     </div>
                 </div>
-            </div>
+            </div> 
             
         </div>
 
