@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Reports</title>
 </head>
 
 <body>
@@ -43,7 +43,7 @@
             </div>
 
             <div class="flex gap-3 justify-evenly border-2 border-dotted border-lightborder p-4 mt-4 rounded-lg">
-                <div class="p-4 border-2 border-lightbtn rounded-lg w-[90%] md:w-[640px] md:h-[350px]">
+                <div class="p-4 functional-chart border-2 border-lightbtn rounded-lg w-[90%] md:w-[640px] md:h-[350px]">
                     <canvas id="amountStatus" class="cursor-pointer" width="600px" height="320px"></canvas>
                     <h4 class="text-center text-xs text-gray-500">
                         Bills Amount Analysis
@@ -90,15 +90,16 @@
             </div>
 
             <div class="flex gap-3 justify-evenly border-2 border-dotted border-lightborder p-4 mt-4 rounded-lg">
-                <div class="p-4 border-2 border-lightbtn rounded-lg w-[90%] md:w-[640px] md:h-[350px]">
+                <div class="p-4 functional-chart border-2 border-lightbtn rounded-lg w-[90%] md:w-[640px] md:h-[350px]">
                     <canvas id="catAmount" class="functional-chart cursor-pointer" width="600px" height="320px"></canvas>
 
-                    <div class="non-functional-chart relative">
-                        <canvas class="non-functional cursor-pointer" width="320" height="320"></canvas>
-                        <h4 class="text-[160px] leading-none text-lightborder absolute top-[24%] left-[40%]">
-                            ?
-                        </h4>
-                    </div>
+                    
+                </div>
+                <div class="non-functional-chart relative md:w-[350px] md:h-[350px] p-4 border-2 border-lightbtn rounded-lg w-[90%]">
+                    <canvas class="non-functional cursor-pointer" width="320" height="320"></canvas>
+                    <h4 class="text-[160px] leading-none text-lightborder absolute top-[24%] left-[40%]">
+                        ?
+                    </h4>
                 </div>
             </div>
 
