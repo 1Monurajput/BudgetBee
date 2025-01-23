@@ -32,7 +32,7 @@ public class OAuthAuthentication implements AuthenticationSuccessHandler {
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
             Authentication authentication) throws IOException, ServletException {
-        logger.info("This is google authentication.....");
+        logger.info("This is google authentication.....  loginnnnnnnnnnnn");
 
         DefaultOAuth2User user = (DefaultOAuth2User) authentication.getPrincipal();
         String email = user.getAttribute("email").toString();
